@@ -72,3 +72,11 @@ const CHECK=(TERMS,CALLBACK)=>{
         CALLBACK();
     };
 };
+const ICONTHEME=(NAME,LIGHT,DARK)=>{
+    const ELEMENT=document.querySelector(NAME);
+    if (sessionStorage.getItem("theme") === "dark" ) {
+        ELEMENT.src=LIGHT;
+    } else {
+        ELEMENT.src=DARK;
+    };
+};
