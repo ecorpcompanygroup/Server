@@ -1,13 +1,11 @@
 const FORGOTPASSWORDPAGE=()=>{
     DISPLAY("",`
         <div class="appLogo"><img id="movielanderLogo" src="${MOVIELANDERNEWLOGO}"/></div>
-        <h1 class="AppName">Movie Lander</h1>
-        <p id="slogan">Your Home Cinema</p>
-        <br>
+        <br><br>
         <input id="designInput" class="Email" type="emai" placeholder="johndoe@gmail.com" >
-        <br><br>
+        <br><br><br><br>
         <button class="LoginButton">Recover</button>
-        <br><br>
+        <br><br><br>
         <p id="createOne">I Remember My Details?<b class="Special"> Login!</b> </p>
     `);
     const LoginButton=document.querySelector(".LoginButton");
@@ -25,19 +23,9 @@ const FORGOTPASSWORDPAGE=()=>{
             width: 140px;
             height: 140px;
             background-color: transparent;
-            border-radius: 50%;
             margin-left: auto;
             margin-right: auto;
-            margin-top: 20%;
-        }
-        .AppName{
-            margin-top:5%;
-            font-size:20px;
-        }
-        #slogan{
-            margin-top:1%;
-            font-size: 15px;
-            font-style: italic;
+            margin-top: 30%;
         }
         input{
             width:75%;
