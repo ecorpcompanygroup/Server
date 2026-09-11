@@ -67,4 +67,3 @@ const FORGOTPASSWORDPAGE=()=>{
     `;
     INJECTCSS(STYLES);
 };
-HOMEPAGE();

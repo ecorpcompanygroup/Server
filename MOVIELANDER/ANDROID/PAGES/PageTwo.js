@@ -62,4 +62,3 @@ const CREATEACCOUNTPAGE=()=>{
     `;
     INJECTCSS(STYLES);
 };
-HOMEPAGE();
