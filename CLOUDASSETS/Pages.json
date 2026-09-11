@@ -1,0 +1,18 @@
+[
+    {
+        "Name":"WhiteModeIcons",
+        "Path":"WhiteModeIcons.js"
+    },
+    {
+        "Name":"DarkModeIcons",
+        "Path":"DarkModeIcons.js"
+    },
+    {
+        "Name":"Images",
+        "Path":"Images.js"
+    },
+    {
+        "Name":"AppLogos",
+        "Path":"AppLogos.js"
+    }
+]
