@@ -1,0 +1,11 @@
+CREATEDATABASEAPI = "https://script.google.com/macros/s/AKfycbzzV6EHb-mFnFm_lS3p5CEKTzMjGVr1bl9mEEbOMm1-t7YvEwWWG2IxKph_OGUppxrH/exec";
+CREATETABLEAPI = "https://script.google.com/macros/s/AKfycbzS-M9Q2tPzFWyMTc3vmvKwtXG1YCRuQbplcLZxr5XKYmSoKOjFztrHujqGD--VKwGYkQ/exec";
+GETDATAAPI = "https://script.google.com/macros/s/AKfycbwVVCXggozy1TROqhSoKGG0jJ5UKVgGI-IhockoG-veI9wOhqavoYe8sTV4YyC0r2KwKQ/exec";
+GOOGLEDRIVEAPI = "https://script.google.com/macros/s/AKfycbynmnPfbVqXw3Lrx13ERIB8d97EHnTjYcf_q-eS54govXpwgKe1PhVVung5lqeJCKwv/exec";
+GOOGLEDRIVETHUMBNAILAPI = "https://drive.google.com/thumbnail?id=";
+INSERTDATAAPI = "https://script.google.com/macros/s/AKfycbzENDLW1MWLgUPsed5wC13xhRl0s8B1CoXXR36XOTg9ulbULBzB81nzq0NG2Y1alBYuUA/exec";
+MAINCONNECTIONAPI = "https://docs.google.com/spreadsheets/d/16LFihiUWEqvV5Np064F1MVQiNf9f4d12FPbiRUT73-4/edit?usp=sharing";
+PAYTOTAAPI = "https://script.google.com/macros/s/AKfycbwxIUwkkXgPoj6xng1SI1h420S63hLCZ3eSoBPIoGSeOuiAy-rm8AWVvdpVYAbYbqiY/exec";
+PESAPALAPI = "https://script.google.com/macros/s/AKfycbxQ_u4e8yAcb3zEZOh_vCtveoA8kYMDqeHHfl3D94UO-kx14M6_3A_e6UBDTbD-sPw7_w/exec";
+SENDEMAILAPI = "https://script.google.com/macros/s/AKfycbx2-oCEumSM5TAoWQ8quDsCIOmJo-4U3RSi0rd5mzAdT0HdOTbRDgmscFA5qIiFNo7S_g/exec";
+UPDATEDATAAPI = "https://script.google.com/macros/s/AKfycbyY9vJAPO1fkxtxWXkVIqdb7qbwDKjMeit8JgE0Dj54KAg6coSCNVVGn9GbyqOLMBv6MA/exec";
