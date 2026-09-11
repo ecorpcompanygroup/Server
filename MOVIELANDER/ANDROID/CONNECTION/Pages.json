@@ -3,95 +3,95 @@
   "Data": [
     {
       "NAME": "PAGE",
-      "PATH": "../PAGES/PageOne.js"
+      "PATH": "./PAGES/PageOne.js"
     },
     {
       "NAME": "PAGETWO",
-      "PATH": "../PAGES/PageTwo.js"
+      "PATH": "./PAGES/PageTwo.js"
     },
     {
       "NAME": "PAGETHREE",
-      "PATH": "../PAGES/PageThree.js"
+      "PATH": "./PAGES/PageThree.js"
     },
     {
       "NAME": "PAGEFOUR",
-      "PATH": "../PAGES/PageFour.js"
+      "PATH": "./PAGES/PageFour.js"
     },
     {
       "NAME": "PAGEFIVE",
-      "PATH": "../PAGES/PageFive.js"
+      "PATH": "./PAGES/PageFive.js"
     },
     {
       "NAME": "PAGESIX",
-      "PATH": "../PAGES/PageSix.js"
+      "PATH": "./PAGES/PageSix.js"
     },
     {
       "NAME": "PAGESEVEN",
-      "PATH": "../PAGES/PageSeven.js"
+      "PATH": "./PAGES/PageSeven.js"
     },
     {
       "NAME": "PAGEEIGHT",
-      "PATH": "../PAGES/PageEight.js"
+      "PATH": "./PAGES/PageEight.js"
     },
     {
       "NAME": "PAGENINE",
-      "PATH": "../PAGES/PageNine.js"
+      "PATH": "./PAGES/PageNine.js"
     },
     {
       "NAME": "PAGETEN",
-      "PATH": "../PAGES/PageTen.js"
+      "PATH": "./PAGES/PageTen.js"
     },
     {
       "NAME": "PAGEELEVEN",
-      "PATH": "../PAGES/PageEleven.js"
+      "PATH": "./PAGES/PageEleven.js"
     },
     {
       "NAME": "PAGETWELVE",
-      "PATH": "../PAGES/PageTwelve.js"
+      "PATH": "./PAGES/PageTwelve.js"
     },
     {
       "NAME": "PAGETHIRTEEN",
-      "PATH": "../PAGES/PageThirteen.js"
+      "PATH": "./PAGES/PageThirteen.js"
     },
     {
       "NAME": "PAGEFOURTEEN",
-      "PATH": "../PAGES/PageFourteen.js"
+      "PATH": "./PAGES/PageFourteen.js"
     },
     {
       "NAME": "PAGEFIFTEEN",
-      "PATH": "../PAGES/PageFifteen.js"
+      "PATH": "./PAGES/PageFifteen.js"
     },
     {
       "NAME": "PAGESIXTEEN",
-      "PATH": "../PAGES/PageSixteen.js"
+      "PATH": "./PAGES/PageSixteen.js"
     },
     {
       "NAME": "PAGESEVENTEEN",
-      "PATH": "../PAGES/PageSeventeen.js"
+      "PATH": "./PAGES/PageSeventeen.js"
     },
     {
       "NAME": "PAGEEIGHTEEN",
-      "PATH": "../PAGES/PageEighteen.js"
+      "PATH": "./PAGES/PageEighteen.js"
     },
     {
       "NAME": "PAGENINETEEN",
-      "PATH": "../PAGES/PageNineteen.js"
+      "PATH": "./PAGES/PageNineteen.js"
     },
     {
       "NAME": "PAGETWENTY",
-      "PATH": "../PAGES/PageTwenty.js"
+      "PATH": "./PAGES/PageTwenty.js"
     },
     {
       "NAME": "PAGETWENTYONE",
-      "PATH": "../PAGES/PageTwentyOne.js"
+      "PATH": "./PAGES/PageTwentyOne.js"
     },
     {
       "NAME": "PAGETWENTYTWO",
-      "PATH": "../PAGES/PageTwentyTwo.js"
+      "PATH": "./PAGES/PageTwentyTwo.js"
     },
     {
       "NAME": "PAGETWENTYTHREE",
-      "PATH": "../PAGES/PageTwentyThree.js"
+      "PATH": "./PAGES/PageTwentyThree.js"
     }
   ]
 }
