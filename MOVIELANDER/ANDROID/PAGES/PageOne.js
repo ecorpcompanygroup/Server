@@ -1,7 +1,6 @@
 const SIGNINPAGE=()=>{
     DISPLAY("",`
-        <div class="appLogo"><img id="movielanderLogo" src="../ASSETS/ML-png-no-text.png"/></div>
-        
+        <div class="appLogo"><img id="movielanderLogo" src="${MOVIELANDERNEWLOGO}"/></div>
         <br>
         <input id="designInput" class="Email" type="email" placeholder="johndoe@gmail.com" >
         <br><br>

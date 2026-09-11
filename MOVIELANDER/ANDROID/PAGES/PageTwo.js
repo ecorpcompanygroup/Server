@@ -1,6 +1,6 @@
 const CREATEACCOUNTPAGE=()=>{
     DISPLAY("",`
-        <div class="appLogo"></div>
+        <div class="appLogo"><img id="movielanderLogo" src="${MOVIELANDERNEWLOGO}"/></div>
         <h1 class="AppName">Movie Lander</h1>
         <p id="slogan">Your Home Cinema</p>
         <br>

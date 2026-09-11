@@ -1,6 +1,6 @@
 const FORGOTPASSWORDPAGE=()=>{
     DISPLAY("",`
-        <div class="appLogo"></div>
+        <div class="appLogo"><img id="movielanderLogo" src="${MOVIELANDERNEWLOGO}"/></div>
         <h1 class="AppName">Movie Lander</h1>
         <p id="slogan">Your Home Cinema</p>
         <br>
@@ -24,7 +24,7 @@ const FORGOTPASSWORDPAGE=()=>{
         .appLogo{
             width: 140px;
             height: 140px;
-            background-color: orange;
+            background-color: transparent;
             border-radius: 50%;
             margin-left: auto;
             margin-right: auto;
