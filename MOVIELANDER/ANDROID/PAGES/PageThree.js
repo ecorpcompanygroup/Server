@@ -1,14 +1,14 @@
 const FORGOTPASSWORDPAGE=()=>{
     DISPLAY("",`
+        <div class="appLogo"></div>
         <h1 class="AppName">Movie Lander</h1>
+        <p id="slogan">Your Home Cinema</p>
         <br>
-        <p>Your Home Cinema</p>
-        <br>
-        <input class="Email" type="emai" placeholder="johndoe@gmail.com" >
+        <input id="designInput" class="Email" type="emai" placeholder="johndoe@gmail.com" >
         <br><br>
         <button class="LoginButton">Recover</button>
         <br><br>
-        <p>I Remember My Details?<b class="Special"> LogIn!</b> </p>
+        <p id="createOne">I Remember My Details?<b class="Special"> Login!</b> </p>
     `);
     const LoginButton=document.querySelector(".LoginButton");
     const Email=document.querySelector(".Email");
@@ -17,26 +17,44 @@ const FORGOTPASSWORDPAGE=()=>{
 
     });
     Special.addEventListener("click",()=>{
-        ROUTE("",HOMEPAGE,"HOMEPAGE");
+        ROUTE("",SIGNINPAGE,"FORGOTPASSWORDPAGE");
     });
     THEMER(Email);
     const STYLES=`
+        .appLogo{
+            width: 140px;
+            height: 140px;
+            background-color: orange;
+            border-radius: 50%;
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 20%;
+        }
         .AppName{
-            margin-top:20%;
-            font-size:30px;
+            margin-top:5%;
+            font-size:20px;
+        }
+        #slogan{
+            margin-top:1%;
+            font-size: 15px;
+            font-style: italic;
         }
         input{
-            width:90%;
+            width:75%;
             background:transparent;
-            border:1px solid #cdcdcd;
+            border:1px solid #23bee7;
             height:32px;
             border-radius:5px;
+            outline: none;
+        }
+        #designInput{
+            border-left: 5px solid #23bee7;
         }
         .LoginButton{
-            width:90%;
+            width:50%;
             border-radius:10px;
-            height:50px;
-            background:forestgreen;
+            height:45px;
+            background: #23bee7;
             color:white;
         }
         .ForgotPassword{
@@ -44,7 +62,7 @@ const FORGOTPASSWORDPAGE=()=>{
             margin-right:10%;
         }
         .Special{
-            color:teal
+            color: forestgreen;
         }
     `;
     INJECTCSS(STYLES);

@@ -1,18 +1,18 @@
-const HOMEPAGE=()=>{
+const SIGNINPAGE=()=>{
     DISPLAY("",`
+        <div class="appLogo"></div>
         <h1 class="AppName">Movie Lander</h1>
+        <p id="slogan">Your Home Cinema</p>
         <br>
-        <p>Your Home Cinema</p>
-        <br>
-        <input class="Email" type="emai" placeholder="johndoe@gmail.com" >
+        <input id="designInput" class="Email" type="email" placeholder="johndoe@gmail.com" >
         <br><br>
-        <input class="Password" type="password" placeholder="******" >
+        <input id="designInput" class="Password" type="password" placeholder="********" >
         <br><br>
         <h1 class="ForgotPassword">Forgot Password?</h1>
         <br>
         <button class="LoginButton">Sign In</button>
         <br><br>
-        <p>Don't Have Account?<b class="Special"> Create One!</b> </p>
+        <p id="createOne">Don't Have Account?<b class="Special"> Create One!</b> </p>
     `);
     const LoginButton=document.querySelector(".LoginButton");
     const Email=document.querySelector(".Email");
@@ -23,39 +23,65 @@ const HOMEPAGE=()=>{
 
     });
     Special.addEventListener("click",()=>{
-        ROUTE(" ",CREATEACCOUNTPAGE,"HOMEPAGE");
+        ROUTE(" ",CREATEACCOUNTPAGE,"SIGNINPAGE");
     });
     ForgotPassword.addEventListener("click",()=>{
-        ROUTE(" ",FORGOTPASSWORDPAGE,"HOMEPAGE");
+        ROUTE(" ",FORGOTPASSWORDPAGE,"SIGNINPAGE");
     });
     THEMER(Email);THEMER(Password);
     const STYLES=`
+        .appLogo{
+            width: 140px;
+            height: 140px;
+            background-color: orange;
+            border-radius: 50%;
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 20%;
+        }
         .AppName{
-            margin-top:20%;
-            font-size:30px;
+            margin-top:5%;
+            font-size:20px;
+        }
+        #slogan{
+            margin-top:1%;
+            font-size: 15px;
+            font-style: italic;
         }
         input{
-            width:90%;
+            width:75%;
             background:transparent;
-            border:1px solid #cdcdcd;
+            border:1px solid #23bee7;
             height:32px;
             border-radius:5px;
+            outline: none;
+        }
+        #designInput{
+            border-left: 5px solid #23bee7;
         }
         .LoginButton{
-            width:90%;
+            width:50%;
             border-radius:10px;
-            height:50px;
-            background:forestgreen;
+            height:45px;
+            background: #23bee7;
             color:white;
         }
+        .LoginButton:active{
+            background: #336699;
+        }
         .ForgotPassword{
+            font-size: 17px;
             text-align:right;
             margin-right:8%;
         }
+        #createOne{
+            font-size: 17px;
+        }
         .Special{
-            color:teal
+            font-size: 17px;
+            color: forestgreen;
         }
     `;
     INJECTCSS(STYLES);
 };
-HOMEPAGE();
+SIGNINPAGE();
