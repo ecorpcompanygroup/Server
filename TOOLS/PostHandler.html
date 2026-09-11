@@ -1,0 +1,1929 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ERO Social Media Command Center</title>
+
+<style>
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --bg: #f4f7fb;
+    --card: #ffffff;
+    --text: #172033;
+    --muted: #718096;
+    --primary: #2563eb;
+    --primary-dark: #1d4ed8;
+    --border: #e5e7eb;
+    --success: #16a34a;
+    --warning: #d97706;
+    --danger: #dc2626;
+    --dark: #111827;
+}
+
+body {
+    font-family: Inter, Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+}
+
+/* SIDEBAR */
+
+.sidebar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 250px;
+    background: var(--dark);
+    color: white;
+    padding: 25px 18px;
+    z-index: 10;
+}
+
+.logo {
+    font-size: 25px;
+    font-weight: 800;
+    margin-bottom: 5px;
+}
+
+.logo span {
+    color: #60a5fa;
+}
+
+.company {
+    font-size: 12px;
+    color: #9ca3af;
+    margin-bottom: 35px;
+}
+
+.nav-item {
+    padding: 13px 14px;
+    margin-bottom: 7px;
+    border-radius: 10px;
+    cursor: pointer;
+    color: #d1d5db;
+}
+
+.nav-item:hover,
+.nav-item.active {
+    background: #1f2937;
+    color: white;
+}
+
+/* MAIN */
+
+.main {
+    margin-left: 250px;
+    padding: 25px;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+.header h1 {
+    font-size: 28px;
+}
+
+.header p {
+    color: var(--muted);
+    margin-top: 5px;
+}
+
+.header-actions {
+    display: flex;
+    gap: 10px;
+}
+
+/* BUTTONS */
+
+button {
+    border: none;
+    cursor: pointer;
+    font-family: inherit;
+}
+
+.btn {
+    padding: 11px 16px;
+    border-radius: 9px;
+    font-weight: 600;
+}
+
+.btn-primary {
+    background: var(--primary);
+    color: white;
+}
+
+.btn-primary:hover {
+    background: var(--primary-dark);
+}
+
+.btn-light {
+    background: white;
+    border: 1px solid var(--border);
+}
+
+/* STATS */
+
+.stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.stat {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 20px;
+}
+
+.stat-title {
+    color: var(--muted);
+    font-size: 13px;
+}
+
+.stat-number {
+    font-size: 30px;
+    font-weight: 800;
+    margin-top: 8px;
+}
+
+/* TOOLBAR */
+
+.toolbar {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 18px;
+}
+
+.search {
+    flex: 1;
+    min-width: 220px;
+}
+
+input,
+select,
+textarea {
+    width: 100%;
+    padding: 11px 12px;
+    border: 1px solid var(--border);
+    border-radius: 9px;
+    outline: none;
+    font-family: inherit;
+    background: white;
+}
+
+textarea {
+    resize: vertical;
+}
+
+/* CALENDAR */
+
+.calendar-card {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 15px;
+    overflow: hidden;
+}
+
+.calendar-head {
+    padding: 18px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--border);
+}
+
+.month-title {
+    font-size: 20px;
+    font-weight: 800;
+}
+
+.calendar-buttons {
+    display: flex;
+    gap: 7px;
+}
+
+.calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+}
+
+.day-name {
+    background: #f8fafc;
+    padding: 12px;
+    text-align: center;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--muted);
+    border-bottom: 1px solid var(--border);
+}
+
+.day {
+    min-height: 145px;
+    padding: 9px;
+    border-right: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    cursor: pointer;
+}
+
+.day:hover {
+    background: #f8fafc;
+}
+
+.day-number {
+    font-weight: 700;
+    font-size: 13px;
+    margin-bottom: 8px;
+}
+
+.today {
+    background: #eff6ff;
+}
+
+.post {
+    background: #f8fafc;
+    border-left: 4px solid var(--primary);
+    padding: 7px;
+    border-radius: 6px;
+    margin-bottom: 5px;
+    font-size: 11px;
+}
+
+.post.instagram {
+    border-color: #db2777;
+}
+
+.post.facebook {
+    border-color: #2563eb;
+}
+
+.post.linkedin {
+    border-color: #0a66c2;
+}
+
+.post.scheduled {
+    background: #f0fdf4;
+}
+
+.post.published {
+    background: #ecfdf5;
+}
+
+.post.draft {
+    background: #fff7ed;
+}
+
+.post-title {
+    font-weight: 700;
+}
+
+.post-status {
+    font-size: 9px;
+    color: var(--muted);
+    margin-top: 3px;
+}
+
+/* MODAL */
+
+.modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,.55);
+    z-index: 100;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.modal-overlay.show {
+    display: flex;
+}
+
+.modal {
+    background: white;
+    width: min(700px, 100%);
+    max-height: 90vh;
+    overflow-y: auto;
+    border-radius: 16px;
+    padding: 25px;
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.close {
+    background: #f3f4f6;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    font-size: 20px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    font-size: 13px;
+    font-weight: 700;
+    margin-bottom: 6px;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+}
+
+.modal-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+/* POSTS LIST */
+
+.posts-section {
+    margin-top: 25px;
+}
+
+.posts-list {
+    display: grid;
+    gap: 12px;
+}
+
+.post-card {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 13px;
+    padding: 17px;
+}
+
+.post-card-header {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.badge {
+    display: inline-block;
+    padding: 4px 8px;
+    border-radius: 20px;
+    font-size: 10px;
+    font-weight: 700;
+}
+
+.badge-facebook {
+    background: #dbeafe;
+    color: #1d4ed8;
+}
+
+.badge-instagram {
+    background: #fce7f3;
+    color: #be185d;
+}
+
+.badge-linkedin {
+    background: #dbeafe;
+    color: #075985;
+}
+
+.badge-scheduled {
+    background: #dcfce7;
+    color: #166534;
+}
+
+.badge-draft {
+    background: #ffedd5;
+    color: #9a3412;
+}
+
+.badge-published {
+    background: #d1fae5;
+    color: #065f46;
+}
+
+.post-caption {
+    color: #4b5563;
+    margin: 12px 0;
+    line-height: 1.6;
+    white-space: pre-wrap;
+}
+
+.post-actions {
+    display: flex;
+    gap: 8px;
+}
+
+.small-btn {
+    padding: 7px 10px;
+    border-radius: 7px;
+    font-size: 12px;
+    font-weight: 600;
+    background: #f3f4f6;
+}
+
+/* RESPONSIVE */
+
+@media(max-width: 900px) {
+    .sidebar {
+        position: static;
+        width: 100%;
+        height: auto;
+    }
+
+    .main {
+        margin-left: 0;
+    }
+
+    .stats {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media(max-width: 600px) {
+    .main {
+        padding: 15px;
+    }
+
+    .header {
+        display: block;
+    }
+
+    .header-actions {
+        margin-top: 15px;
+    }
+
+    .stats {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .day {
+        min-height: 100px;
+    }
+
+    .day-name {
+        font-size: 9px;
+    }
+
+    .post {
+        font-size: 9px;
+    }
+
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- SIDEBAR -->
+
+<aside class="sidebar">
+
+    <div class="logo">
+        <span>ERO</span>
+    </div>
+
+    <div class="company">
+        Elite Robust Ontology
+    </div>
+
+    <div class="nav-item active" onclick="showSection('dashboard')">
+        📊 Dashboard
+    </div>
+
+    <div class="nav-item" onclick="showSection('calendar')">
+        📅 Calendar
+    </div>
+
+    <div class="nav-item" onclick="showSection('posts')">
+        📝 Posts
+    </div>
+
+    <div class="nav-item" onclick="openModal()">
+        ➕ Add Post
+    </div>
+
+</aside>
+
+
+<main class="main">
+
+    <!-- HEADER -->
+
+    <header class="header">
+
+        <div>
+            <h1>Social Media Command Center</h1>
+            <p>Manage your entire ERO social-media calendar from one place.</p>
+        </div>
+
+        <div class="header-actions">
+            <button class="btn btn-light" onclick="exportData()">
+                Export
+            </button>
+
+            <button class="btn btn-primary" onclick="openModal()">
+                + New Post
+            </button>
+        </div>
+
+    </header>
+
+
+    <!-- STATS -->
+
+    <section class="stats">
+
+        <div class="stat">
+            <div class="stat-title">Total Posts</div>
+            <div class="stat-number" id="totalPosts">0</div>
+        </div>
+
+        <div class="stat">
+            <div class="stat-title">Scheduled</div>
+            <div class="stat-number" id="scheduledPosts">0</div>
+        </div>
+
+        <div class="stat">
+            <div class="stat-title">Published</div>
+            <div class="stat-number" id="publishedPosts">0</div>
+        </div>
+
+        <div class="stat">
+            <div class="stat-title">Drafts</div>
+            <div class="stat-number" id="draftPosts">0</div>
+        </div>
+
+    </section>
+
+
+    <!-- TOOLBAR -->
+
+    <div class="toolbar">
+
+        <div class="search">
+            <input
+                type="text"
+                id="searchInput"
+                placeholder="Search posts..."
+                oninput="renderAll()"
+            >
+        </div>
+
+        <div>
+            <select id="platformFilter" onchange="renderAll()">
+                <option value="all">All Platforms</option>
+                <option value="Facebook">Facebook</option>
+                <option value="Instagram">Instagram</option>
+                <option value="LinkedIn">LinkedIn</option>
+            </select>
+        </div>
+
+        <div>
+            <select id="statusFilter" onchange="renderAll()">
+                <option value="all">All Status</option>
+                <option value="Draft">Draft</option>
+                <option value="Scheduled">Scheduled</option>
+                <option value="Published">Published</option>
+            </select>
+        </div>
+
+    </div>
+
+
+    <!-- CALENDAR -->
+
+    <section class="calendar-card" id="calendarSection">
+
+        <div class="calendar-head">
+
+            <div class="month-title" id="monthTitle"></div>
+
+            <div class="calendar-buttons">
+                <button class="small-btn" onclick="previousMonth()">←</button>
+                <button class="small-btn" onclick="goToday()">Today</button>
+                <button class="small-btn" onclick="nextMonth()">→</button>
+            </div>
+
+        </div>
+
+        <div class="calendar-grid">
+
+            <div class="day-name">SUN</div>
+            <div class="day-name">MON</div>
+            <div class="day-name">TUE</div>
+            <div class="day-name">WED</div>
+            <div class="day-name">THU</div>
+            <div class="day-name">FRI</div>
+            <div class="day-name">SAT</div>
+
+        </div>
+
+        <div class="calendar-grid" id="calendar"></div>
+
+    </section>
+
+
+    <!-- POSTS -->
+
+    <section class="posts-section" id="postsSection">
+
+        <h2 style="margin-bottom:15px;">Content Library</h2>
+
+        <div class="posts-list" id="postsList"></div>
+
+    </section>
+
+</main>
+
+
+<!-- MODAL -->
+
+<div class="modal-overlay" id="modal">
+
+    <div class="modal">
+
+        <div class="modal-header">
+
+            <h2 id="modalTitle">Add Social Post</h2>
+
+            <button class="close" onclick="closeModal()">×</button>
+
+        </div>
+
+        <input type="hidden" id="postId">
+
+        <div class="form-group">
+            <label>Post Title</label>
+            <input id="postTitle" placeholder="Example: Why Businesses Need Digital Systems">
+        </div>
+
+        <div class="form-row">
+
+            <div class="form-group">
+                <label>Date</label>
+                <input type="date" id="postDate">
+            </div>
+
+            <div class="form-group">
+                <label>Time</label>
+                <input type="time" id="postTime" value="09:00">
+            </div>
+
+        </div>
+
+        <div class="form-row">
+
+            <div class="form-group">
+                <label>Platform</label>
+
+                <select id="postPlatform">
+                    <option>Facebook</option>
+                    <option>Instagram</option>
+                    <option>LinkedIn</option>
+                </select>
+
+            </div>
+
+            <div class="form-group">
+                <label>Status</label>
+
+                <select id="postStatus">
+                    <option>Draft</option>
+                    <option>Scheduled</option>
+                    <option>Published</option>
+                </select>
+
+            </div>
+
+        </div>
+
+        <div class="form-group">
+            <label>Caption</label>
+
+            <textarea
+                id="postCaption"
+                rows="9"
+                placeholder="Write your social media caption..."
+            ></textarea>
+
+        </div>
+
+        <div class="form-group">
+            <label>Image URL (Optional)</label>
+
+            <input
+                id="postImage"
+                placeholder="https://example.com/image.jpg"
+            >
+
+        </div>
+
+        <div class="modal-actions">
+
+            <button class="btn btn-light" onclick="closeModal()">
+                Cancel
+            </button>
+
+            <button class="btn btn-primary" onclick="savePost()">
+                Save Post
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<script>
+
+/* =========================================================
+   ERO SOCIAL MEDIA DATA
+========================================================= */
+
+const defaultPosts = [
+
+{
+    id: 1,
+    date: "2026-08-24",
+    time: "09:00",
+    title: "Welcome to Elite Robust Ontology",
+    platform: "Facebook",
+    status: "Scheduled",
+    caption:
+`Welcome to Elite Robust Ontology.
+
+We build modern digital solutions using cloud-native technology.
+
+From mobile applications and websites to desktop applications and business systems, our goal is simple: build technology that solves real problems.
+
+Welcome to the future of practical software development.
+
+Visit our website to learn more.`
+},
+
+{
+    id: 2,
+    date: "2026-08-25",
+    time: "09:00",
+    title: "Our Services",
+    platform: "Instagram",
+    status: "Scheduled",
+    caption:
+`One technology partner. Multiple digital solutions.
+
+At Elite Robust Ontology, we develop:
+
+• Mobile applications
+• Websites
+• Desktop applications
+• Business systems
+• Custom software solutions
+
+We build technology around your needs.`
+},
+
+{
+    id: 3,
+    date: "2026-08-26",
+    time: "09:00",
+    title: "Why Businesses Need Digital Systems",
+    platform: "LinkedIn",
+    status: "Scheduled",
+    caption:
+`Manual processes can consume valuable time.
+
+The right digital system can help businesses organize information, automate repetitive tasks and improve operational efficiency.
+
+Technology should not make business complicated.
+
+It should make business better.`
+},
+
+{
+    id: 4,
+    date: "2026-08-27",
+    time: "09:00",
+    title: "Cloud-Native Technology",
+    platform: "Facebook",
+    status: "Scheduled",
+    caption:
+`Modern software needs to be built for change.
+
+Cloud-native technology allows applications and systems to be designed with scalability, flexibility and reliability in mind.
+
+At Elite Robust Ontology, we use modern technology to build solutions ready for the future.`
+},
+
+{
+    id: 5,
+    date: "2026-08-28",
+    time: "09:00",
+    title: "Technology Partner",
+    platform: "Instagram",
+    status: "Scheduled",
+    caption:
+`We don't just build software.
+
+We build solutions around problems.
+
+Elite Robust Ontology works with businesses and individuals to transform ideas, processes and services into practical digital products.`
+},
+
+{
+    id: 6,
+    date: "2026-09-01",
+    time: "09:00",
+    title: "Professional Websites",
+    platform: "LinkedIn",
+    status: "Scheduled",
+    caption:
+`Your website is often the first digital interaction someone has with your business.
+
+A professional website should communicate clearly, perform reliably and provide a simple experience for visitors.
+
+Your digital presence matters.`
+},
+
+{
+    id: 7,
+    date: "2026-09-02",
+    time: "09:00",
+    title: "Mobile Applications",
+    platform: "Facebook",
+    status: "Scheduled",
+    caption:
+`People use their phones for almost everything.
+
+A well-designed mobile application can help businesses deliver services, communicate with customers and create better digital experiences.
+
+Have an app idea?
+
+Let's build it.`
+},
+
+{
+    id: 8,
+    date: "2026-09-03",
+    time: "09:00",
+    title: "Business Automation",
+    platform: "Instagram",
+    status: "Scheduled",
+    caption:
+`Imagine spending less time repeating the same tasks.
+
+Business automation can help reduce repetitive work, improve consistency and give your team more time to focus on important activities.
+
+Good software works for you.`
+},
+
+{
+    id: 9,
+    date: "2026-09-04",
+    time: "09:00",
+    title: "Software Security",
+    platform: "LinkedIn",
+    status: "Scheduled",
+    caption:
+`Security should not be an afterthought.
+
+Digital solutions need to be designed with security and responsible data handling in mind from the beginning.
+
+Build securely. Build responsibly.`
+},
+
+{
+    id: 10,
+    date: "2026-09-07",
+    time: "09:00",
+    title: "Software That Scales",
+    platform: "Facebook",
+    status: "Scheduled",
+    caption:
+`Your software should be able to grow with your business.
+
+Scalable architecture helps applications handle increasing users, data and workloads without requiring a complete rebuild.
+
+Build for today. Prepare for tomorrow.`
+},
+
+{
+    id: 11,
+    date: "2026-09-08",
+    time: "09:00",
+    title: "Cloud-Native Explained",
+    platform: "Instagram",
+    status: "Scheduled",
+    caption:
+`What does cloud-native mean?
+
+Simply put, it means designing software with modern cloud environments in mind.
+
+The result can be applications that are easier to deploy, maintain, scale and improve over time.`
+},
+
+{
+    id: 12,
+    date: "2026-09-09",
+    time: "09:00",
+    title: "From Problem to Solution",
+    platform: "LinkedIn",
+    status: "Scheduled",
+    caption:
+`Problem:
+
+Too many manual processes.
+
+Solution:
+
+A customized digital system that automates those processes.
+
+Technology becomes valuable when it solves a real problem.`
+},
+
+{
+    id: 13,
+    date: "2026-09-10",
+    time: "09:00",
+    title: "Our Development Capability",
+    platform: "Facebook",
+    status: "Scheduled",
+    caption:
+`From simple applications to complete business systems, Elite Robust Ontology develops software across multiple platforms.
+
+Web.
+
+Mobile.
+
+Desktop.
+
+Cloud.
+
+One technology partner.`
+},
+
+{
+    id: 14,
+    date: "2026-09-11",
+    time: "09:00",
+    title: "Start With the Problem",
+    platform: "Instagram",
+    status: "Scheduled",
+    caption:
+`Before building an application, ask one important question:
+
+What problem will this software solve?
+
+Great software starts with understanding the problem — not simply choosing technology.`
+},
+
+{
+    id: 15,
+    date: "2026-09-14",
+    time: "09:00",
+    title: "Who We Serve",
+    platform: "LinkedIn",
+    status: "Scheduled",
+    caption:
+`Elite Robust Ontology works with businesses, organizations and individuals looking to turn ideas into practical digital solutions.
+
+Whether you need a website, mobile application, desktop application or custom business system, technology can be built around your needs.`
+},
+
+{
+    id: 16,
+    date: "2026-09-15",
+    time: "09:00",
+    title: "Your Idea Can Become Software",
+    platform: "Facebook",
+    status: "Scheduled",
+    caption:
+`Every software product starts with an idea.
+
+The important part is transforming that idea into something useful, reliable and scalable.
+
+Have an idea?
+
+Start building it.`
+},
+
+{
+    id: 17,
+    date: "2026-09-16",
+    time: "09:00",
+    title: "Reliable Digital Solutions",
+    platform: "Instagram",
+    status: "Scheduled",
+    caption:
+`Software should not simply work today.
+
+It should be designed to remain useful tomorrow.
+
+Elite Robust Ontology focuses on building secure, scalable, reliable and accessible digital solutions.`
+},
+
+{
+    id: 18,
+    date: "2026-09-17",
+    time: "09:00",
+    title: "Your Digital Future",
+    platform: "LinkedIn",
+    status: "Scheduled",
+    caption:
+`Digital transformation is not about using technology for the sake of technology.
+
+It is about using technology to improve how people and organizations work.
+
+Build smarter. Operate better. Grow with technology.`
+},
+
+{
+    id: 19,
+    date: "2026-09-18",
+    time: "09:00",
+    title: "Your Idea Deserves More",
+    platform: "Facebook",
+    status: "Scheduled",
+    caption:
+`Your software idea deserves more than a prototype.
+
+It deserves thoughtful architecture, reliable technology and a clear purpose.
+
+Elite Robust Ontology builds digital solutions designed for real-world use.`
+},
+
+{
+    id: 20,
+    date: "2026-09-21",
+    time: "09:00",
+    title: "Engineering the Future",
+    platform: "Instagram",
+    status: "Scheduled",
+    caption:
+`Technology is changing how businesses operate.
+
+At Elite Robust Ontology, we are building the digital solutions that help businesses and individuals participate in that future.
+
+Engineering the future, one solution at a time.`
+},
+
+{
+    id: 21,
+    date: "2026-09-22",
+    time: "09:00",
+    title: "Digital Solutions",
+    platform: "LinkedIn",
+    status: "Scheduled",
+    caption:
+`A digital solution should make something easier, faster, safer or better.
+
+That is the standard we aim for at Elite Robust Ontology.
+
+Technology with purpose.`
+},
+
+{
+    id: 22,
+    date: "2026-09-23",
+    time: "09:00",
+    title: "Custom Software",
+    platform: "Facebook",
+    status: "Scheduled",
+    caption:
+`Not every business works the same way.
+
+Sometimes the best solution is software designed specifically around your processes.
+
+Custom software can turn unique business requirements into practical digital tools.`
+},
+
+{
+    id: 23,
+    date: "2026-09-24",
+    time: "09:00",
+    title: "Modern Development",
+    platform: "Instagram",
+    status: "Scheduled",
+    caption:
+`Modern software development is about more than writing code.
+
+It is about architecture, usability, security, performance, scalability and solving the right problem.`
+},
+
+{
+    id: 24,
+    date: "2026-09-25",
+    time: "09:00",
+    title: "Technology For Business",
+    platform: "LinkedIn",
+    status: "Scheduled",
+    caption:
+`The right technology can become an important part of a company's operations.
+
+From internal systems to customer-facing applications, software can help organizations work more efficiently and deliver better services.`
+},
+
+{
+    id: 25,
+    date: "2026-09-28",
+    time: "09:00",
+    title: "Build With Purpose",
+    platform: "Facebook",
+    status: "Scheduled",
+    caption:
+`Don't build software simply because you can.
+
+Build it because it solves a problem.
+
+At Elite Robust Ontology, purpose comes before technology.`
+},
+
+{
+    id: 26,
+    date: "2026-09-29",
+    time: "09:00",
+    title: "ERO Vision",
+    platform: "Instagram",
+    status: "Scheduled",
+    caption:
+`Our vision is simple:
+
+Build practical digital solutions that help people and organizations operate in a more connected and efficient world.
+
+Technology should create possibilities.`
+},
+
+{
+    id: 27,
+    date: "2026-09-30",
+    time: "09:00",
+    title: "The Future Is Digital",
+    platform: "LinkedIn",
+    status: "Scheduled",
+    caption:
+`The future of business will continue to depend on digital infrastructure.
+
+Organizations that adopt the right technology can create better experiences, improve operations and unlock new opportunities.
+
+The future is being built today.`
+},
+
+{
+    id: 28,
+    date: "2026-10-01",
+    time: "09:00",
+    title: "Build Your Next Solution",
+    platform: "Facebook",
+    status: "Scheduled",
+    caption:
+`Have a business process that could be better?
+
+Have an application idea?
+
+Have a digital service you want to launch?
+
+The first step is turning the idea into a plan.`
+},
+
+{
+    id: 29,
+    date: "2026-10-02",
+    time: "09:00",
+    title: "Thank You",
+    platform: "Instagram",
+    status: "Scheduled",
+    caption:
+`Thank you for following Elite Robust Ontology.
+
+We are committed to building practical technology and creating digital solutions that solve real problems.
+
+The journey continues.`
+},
+
+{
+    id: 30,
+    date: "2026-10-03",
+    time: "09:00",
+    title: "Let's Build",
+    platform: "LinkedIn",
+    status: "Scheduled",
+    caption:
+`Have an idea that could become software?
+
+Let's turn the idea into something useful.
+
+Elite Robust Ontology builds websites, mobile applications, desktop applications and custom business systems.
+
+Engineering the future, one solution at a time.`
+}
+
+];
+
+
+/* =========================================================
+   STORAGE
+========================================================= */
+
+let posts = JSON.parse(
+    localStorage.getItem("ero_social_posts")
+) || defaultPosts;
+
+let currentDate = new Date();
+
+
+function saveStorage() {
+    localStorage.setItem(
+        "ero_social_posts",
+        JSON.stringify(posts)
+    );
+}
+
+
+/* =========================================================
+   CALENDAR
+========================================================= */
+
+function renderCalendar() {
+
+    const calendar = document.getElementById("calendar");
+
+    calendar.innerHTML = "";
+
+    const year = currentDate.getFullYear();
+    const month = currentDate.getMonth();
+
+    const monthName = currentDate.toLocaleString(
+        "en-US",
+        {
+            month: "long",
+            year: "numeric"
+        }
+    );
+
+    document.getElementById("monthTitle").textContent =
+        monthName;
+
+    const firstDay =
+        new Date(year, month, 1).getDay();
+
+    const daysInMonth =
+        new Date(year, month + 1, 0).getDate();
+
+    const search =
+        document.getElementById("searchInput").value.toLowerCase();
+
+    const platform =
+        document.getElementById("platformFilter").value;
+
+    const status =
+        document.getElementById("statusFilter").value;
+
+
+    for(let i = 0; i < firstDay; i++) {
+
+        const empty = document.createElement("div");
+
+        empty.className = "day";
+
+        calendar.appendChild(empty);
+
+    }
+
+
+    for(let day = 1; day <= daysInMonth; day++) {
+
+        const cell = document.createElement("div");
+
+        cell.className = "day";
+
+        const dateString =
+            `${year}-${String(month + 1).padStart(2,"0")}-${String(day).padStart(2,"0")}`;
+
+        const today =
+            new Date().toISOString().split("T")[0];
+
+        if(dateString === today) {
+            cell.classList.add("today");
+        }
+
+
+        const number =
+            document.createElement("div");
+
+        number.className = "day-number";
+
+        number.textContent = day;
+
+        cell.appendChild(number);
+
+
+        const dayPosts =
+            posts.filter(p => {
+
+                const matchesDate =
+                    p.date === dateString;
+
+                const matchesSearch =
+                    !search ||
+                    p.title.toLowerCase().includes(search) ||
+                    p.caption.toLowerCase().includes(search);
+
+                const matchesPlatform =
+                    platform === "all" ||
+                    p.platform === platform;
+
+                const matchesStatus =
+                    status === "all" ||
+                    p.status === status;
+
+                return matchesDate &&
+                       matchesSearch &&
+                       matchesPlatform &&
+                       matchesStatus;
+
+            });
+
+
+        dayPosts.forEach(post => {
+
+            const postElement =
+                document.createElement("div");
+
+            postElement.className =
+                `post ${post.platform.toLowerCase()} ${post.status.toLowerCase()}`;
+
+            postElement.innerHTML = `
+
+                <div class="post-title">
+                    ${escapeHTML(post.title)}
+                </div>
+
+                <div>
+                    ${escapeHTML(post.time)}
+                </div>
+
+                <div class="post-status">
+                    ${escapeHTML(post.platform)}
+                    ·
+                    ${escapeHTML(post.status)}
+                </div>
+
+            `;
+
+            postElement.onclick =
+                (event) => {
+
+                    event.stopPropagation();
+
+                    editPost(post.id);
+
+                };
+
+            cell.appendChild(postElement);
+
+        });
+
+
+        cell.onclick = () => {
+
+            openModal(dateString);
+
+        };
+
+
+        calendar.appendChild(cell);
+
+    }
+
+}
+
+
+function previousMonth() {
+
+    currentDate.setMonth(
+        currentDate.getMonth() - 1
+    );
+
+    renderCalendar();
+
+}
+
+
+function nextMonth() {
+
+    currentDate.setMonth(
+        currentDate.getMonth() + 1
+    );
+
+    renderCalendar();
+
+}
+
+
+function goToday() {
+
+    currentDate = new Date();
+
+    renderCalendar();
+
+}
+
+
+/* =========================================================
+   POSTS
+========================================================= */
+
+function renderPosts() {
+
+    const container =
+        document.getElementById("postsList");
+
+    container.innerHTML = "";
+
+    const search =
+        document.getElementById("searchInput").value.toLowerCase();
+
+    const platform =
+        document.getElementById("platformFilter").value;
+
+    const status =
+        document.getElementById("statusFilter").value;
+
+
+    const filtered =
+        posts
+        .filter(post => {
+
+            const matchesSearch =
+                !search ||
+                post.title.toLowerCase().includes(search) ||
+                post.caption.toLowerCase().includes(search);
+
+            const matchesPlatform =
+                platform === "all" ||
+                post.platform === platform;
+
+            const matchesStatus =
+                status === "all" ||
+                post.status === status;
+
+            return matchesSearch &&
+                   matchesPlatform &&
+                   matchesStatus;
+
+        })
+        .sort((a,b) =>
+            `${a.date}${a.time}`
+            .localeCompare(`${b.date}${b.time}`)
+        );
+
+
+    filtered.forEach(post => {
+
+        const card =
+            document.createElement("div");
+
+        card.className = "post-card";
+
+        card.innerHTML = `
+
+            <div class="post-card-header">
+
+                <div>
+
+                    <h3>
+                        ${escapeHTML(post.title)}
+                    </h3>
+
+                    <small>
+                        ${escapeHTML(post.date)}
+                        ·
+                        ${escapeHTML(post.time)}
+                    </small>
+
+                </div>
+
+                <div>
+
+                    <span class="badge badge-${post.platform.toLowerCase()}">
+                        ${escapeHTML(post.platform)}
+                    </span>
+
+                    <span class="badge badge-${post.status.toLowerCase()}">
+                        ${escapeHTML(post.status)}
+                    </span>
+
+                </div>
+
+            </div>
+
+            <div class="post-caption">
+                ${escapeHTML(post.caption)}
+            </div>
+
+            <div class="post-actions">
+
+                <button
+                    class="small-btn"
+                    onclick="copyCaption(${post.id})"
+                >
+                    📋 Copy
+                </button>
+
+                <button
+                    class="small-btn"
+                    onclick="editPost(${post.id})"
+                >
+                    ✏️ Edit
+                </button>
+
+                <button
+                    class="small-btn"
+                    onclick="deletePost(${post.id})"
+                >
+                    🗑️ Delete
+                </button>
+
+            </div>
+
+        `;
+
+        container.appendChild(card);
+
+    });
+
+}
+
+
+/* =========================================================
+   STATS
+========================================================= */
+
+function renderStats() {
+
+    document.getElementById("totalPosts").textContent =
+        posts.length;
+
+    document.getElementById("scheduledPosts").textContent =
+        posts.filter(p => p.status === "Scheduled").length;
+
+    document.getElementById("publishedPosts").textContent =
+        posts.filter(p => p.status === "Published").length;
+
+    document.getElementById("draftPosts").textContent =
+        posts.filter(p => p.status === "Draft").length;
+
+}
+
+
+/* =========================================================
+   RENDER ALL
+========================================================= */
+
+function renderAll() {
+
+    renderCalendar();
+
+    renderPosts();
+
+    renderStats();
+
+}
+
+
+/* =========================================================
+   MODAL
+========================================================= */
+
+function openModal(date = "") {
+
+    document.getElementById("modal").classList.add("show");
+
+    document.getElementById("modalTitle").textContent =
+        "Add Social Post";
+
+    document.getElementById("postId").value = "";
+
+    document.getElementById("postTitle").value = "";
+
+    document.getElementById("postDate").value =
+        date ||
+        new Date().toISOString().split("T")[0];
+
+    document.getElementById("postTime").value =
+        "09:00";
+
+    document.getElementById("postPlatform").value =
+        "Facebook";
+
+    document.getElementById("postStatus").value =
+        "Draft";
+
+    document.getElementById("postCaption").value = "";
+
+    document.getElementById("postImage").value = "";
+
+}
+
+
+function closeModal() {
+
+    document
+        .getElementById("modal")
+        .classList.remove("show");
+
+}
+
+
+function editPost(id) {
+
+    const post =
+        posts.find(p => p.id === id);
+
+    if(!post) return;
+
+
+    document.getElementById("modal").classList.add("show");
+
+    document.getElementById("modalTitle").textContent =
+        "Edit Social Post";
+
+    document.getElementById("postId").value =
+        post.id;
+
+    document.getElementById("postTitle").value =
+        post.title;
+
+    document.getElementById("postDate").value =
+        post.date;
+
+    document.getElementById("postTime").value =
+        post.time;
+
+    document.getElementById("postPlatform").value =
+        post.platform;
+
+    document.getElementById("postStatus").value =
+        post.status;
+
+    document.getElementById("postCaption").value =
+        post.caption;
+
+    document.getElementById("postImage").value =
+        post.image || "";
+
+}
+
+
+function savePost() {
+
+    const id =
+        document.getElementById("postId").value;
+
+    const data = {
+
+        date:
+            document.getElementById("postDate").value,
+
+        time:
+            document.getElementById("postTime").value,
+
+        title:
+            document.getElementById("postTitle").value.trim(),
+
+        platform:
+            document.getElementById("postPlatform").value,
+
+        status:
+            document.getElementById("postStatus").value,
+
+        caption:
+            document.getElementById("postCaption").value.trim(),
+
+        image:
+            document.getElementById("postImage").value.trim()
+
+    };
+
+
+    if(!data.title || !data.date || !data.caption) {
+
+        alert(
+            "Please enter a title, date and caption."
+        );
+
+        return;
+
+    }
+
+
+    if(id) {
+
+        const index =
+            posts.findIndex(
+                p => p.id == id
+            );
+
+        if(index !== -1) {
+
+            posts[index] = {
+                ...posts[index],
+                ...data
+            };
+
+        }
+
+    } else {
+
+        posts.push({
+
+            id: Date.now(),
+
+            ...data
+
+        });
+
+    }
+
+
+    saveStorage();
+
+    closeModal();
+
+    renderAll();
+
+}
+
+
+/* =========================================================
+   DELETE
+========================================================= */
+
+function deletePost(id) {
+
+    const post =
+        posts.find(p => p.id === id);
+
+    if(!post) return;
+
+
+    if(
+        confirm(
+            `Delete "${post.title}"?`
+        )
+    ) {
+
+        posts =
+            posts.filter(
+                p => p.id !== id
+            );
+
+        saveStorage();
+
+        renderAll();
+
+    }
+
+}
+
+
+/* =========================================================
+   COPY
+========================================================= */
+
+function copyCaption(id) {
+
+    const post =
+        posts.find(p => p.id === id);
+
+    if(!post) return;
+
+
+    navigator.clipboard
+        .writeText(post.caption)
+        .then(() => {
+
+            alert(
+                "Caption copied to clipboard."
+            );
+
+        });
+
+}
+
+
+/* =========================================================
+   EXPORT
+========================================================= */
+
+function exportData() {
+
+    const data =
+        JSON.stringify(posts, null, 2);
+
+    const blob =
+        new Blob(
+            [data],
+            {
+                type: "application/json"
+            }
+        );
+
+    const url =
+        URL.createObjectURL(blob);
+
+    const a =
+        document.createElement("a");
+
+    a.href = url;
+
+    a.download =
+        "ero-social-media-calendar.json";
+
+    a.click();
+
+    URL.revokeObjectURL(url);
+
+}
+
+
+/* =========================================================
+   NAVIGATION
+========================================================= */
+
+function showSection(section) {
+
+    if(section === "calendar") {
+
+        document
+            .getElementById("calendarSection")
+            .scrollIntoView({
+                behavior: "smooth"
+            });
+
+    }
+
+    if(section === "posts") {
+
+        document
+            .getElementById("postsSection")
+            .scrollIntoView({
+                behavior: "smooth"
+            });
+
+    }
+
+}
+
+
+/* =========================================================
+   SECURITY
+========================================================= */
+
+function escapeHTML(value) {
+
+    return String(value)
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#039;");
+
+}
+
+
+/* =========================================================
+   INITIALIZE
+========================================================= */
+
+renderAll();
+
+</script>
+
+</body>
+</html>

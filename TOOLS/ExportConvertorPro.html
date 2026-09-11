@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Export Converter Pro</title>
+<style>
+    *{
+        margin:0;
+        padding:0;
+        box-sizing:border-box;
+        font-family:Inter,Segoe UI,sans-serif;
+    }
+    body{
+        min-height:100vh;
+        padding:40px;
+        background:linear-gradient(135deg,#0f172a,#111827,#312e81);
+    }
+    .container{
+        max-width:1200px;
+        margin:auto;
+        background:rgba(255,255,255,.06);
+        backdrop-filter:blur(20px);
+        border:1px solid rgba(255,255,255,.1);
+        border-radius:24px;
+        padding:30px;
+        box-shadow:0 20px 60px rgba(0,0,0,.35);
+    }
+    h1{
+        color:white;
+        text-align:center;
+        margin-bottom:10px;
+    }
+    .subtitle{
+        text-align:center;
+        color:rgba(255,255,255,.65);
+        margin-bottom:25px;
+    }
+    textarea{
+        width:100%;
+        min-height:220px;
+        padding:18px;
+        border-radius:16px;
+        border:1px solid rgba(255,255,255,.1);
+        background:rgba(255,255,255,.05);
+        color:white;
+        resize:vertical;
+        outline:none;
+        font-family:Consolas,monospace;
+    }
+    textarea::placeholder{
+        color:rgba(255,255,255,.4);
+    }
+    .controls{
+        display:flex;
+        gap:12px;
+        flex-wrap:wrap;
+        margin:20px 0;
+    }
+    button{
+        border:none;
+        cursor:pointer;
+        color:white;
+        padding:12px 18px;
+        border-radius:12px;
+        font-weight:600;
+        transition:.25s;
+    }
+    button:hover{transform:translateY(-2px);}
+    .generate{background:linear-gradient(135deg,#6366f1,#8b5cf6);}
+    .copy{background:linear-gradient(135deg,#0891b2,#06b6d4);}
+    .clear{background:linear-gradient(135deg,#dc2626,#ef4444);}
+    .outputs{
+        display:grid;
+        grid-template-columns:1fr 1fr;
+        gap:20px;
+    }
+    @media(max-width:900px){
+        .outputs{
+            grid-template-columns:1fr;
+        }
+    }
+    .panel{
+        background:rgba(255,255,255,.05);
+        border:1px solid rgba(255,255,255,.08);
+        border-radius:16px;
+        overflow:hidden;
+    }
+    .panel-header{
+        padding:14px 18px;
+        background:rgba(255,255,255,.05);
+        color:white;
+        font-weight:600;
+    }
+    .output{
+        min-height:350px;
+        padding:18px;
+        color:#e5e7eb;
+        white-space:pre-wrap;
+        word-break:break-word;
+        font-family:Consolas,monospace;
+        overflow:auto;
+    }
+    .status{
+        color:#7dd3fc;
+        margin-top:15px;
+    }
+</style>
+</head>
+<body>
+    <div class="container">
+        <h1>Export Converter Pro</h1>
+        <p class="subtitle">Convert exports into const declarations and window assignments.</p>
+        <textarea id="input" placeholder="Paste exports here... export{ADD,DISPLAY,FETCH}; export{HEADER,DIV};"></textarea>
+        <div class="controls">
+            <button class="generate" onclick="generate()">Generate</button>
+            <button class="copy" onclick="copyConsts()">Copy Consts</button>
+            <button class="copy" onclick="copyWindows()">Copy Window</button>
+            <button class="clear" onclick="clearAll()">Clear</button>
+        </div>
+        <div class="outputs">
+            <div class="panel">
+                <div class="panel-header">Const Output</div>
+                <div id="constOutput" class="output"></div>
+            </div>
+            <div class="panel">
+                <div class="panel-header">Window Output</div>
+                <div id="windowOutput" class="output"></div>
+            </div>
+        </div>
+        <div id="status" class="status"></div>
+    </div>
+<script>
+    let constResult = "";
+    let windowResult = "";
+    function generate(){
+        const input =document.getElementById("input").value;
+        const exportsSet = new Set();
+        const matches =input.matchAll(/export\s*\{([^}]*)\}/g);
+        for(const match of matches){
+            match[1]
+            .split(",")
+            .map(x => x.trim())
+            .filter(Boolean)
+            .forEach(x => exportsSet.add(x));
+        }
+        const names =[...exportsSet].sort((a,b)=>
+            a.localeCompare(b)
+        );
+        constResult = names.map(name =>
+            `const ${name} = \${${name}};`
+        ).join("\n");
+        windowResult = names.map(name =>
+            `window.${name} = ${name};`
+        ).join("\n");
+        document.getElementById("constOutput").textContent = constResult;
+        document.getElementById("windowOutput").textContent = windowResult;
+        setStatus(`${names.length} exports converted.`);
+    }
+    async function copyConsts(){
+        if(!constResult) return;
+        await navigator.clipboard.writeText(constResult);
+        setStatus("Const output copied ✓");
+    }
+    async function copyWindows(){
+        if(!windowResult) return;
+        await navigator.clipboard.writeText(
+            windowResult
+        );
+        setStatus("Window output copied ✓");
+    }
+    function clearAll(){
+        document.getElementById("input").value = "";
+        document.getElementById("constOutput").textContent = "";
+        document.getElementById("windowOutput").textContent = "";
+        constResult = "";
+        windowResult = "";
+        setStatus("Cleared.");
+    }
+    function setStatus(message){
+        const status =document.getElementById("status");
+        status.textContent = message;
+        clearTimeout(status.timer);
+        status.timer =setTimeout(() => {status.textContent = "";},3000);
+    }
+</script>
+</body>
+</html>

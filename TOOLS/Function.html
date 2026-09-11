@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title> Function Converter</title>
+</head>
+<style>
+    * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+    }
+    body {
+    background: #111;
+    color: white;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    }
+    .container {
+    width: 100%;
+    max-width: 900px;
+    background: #1b1b1b;
+    padding: 25px;
+    border-radius: 16px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.4);
+    }
+    h1 {
+    text-align: center;
+    margin-bottom: 10px;
+    }
+    .subtitle {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #aaa;
+    }
+    textarea {
+    width: 100%;
+    min-height: 220px;
+    background: #0d0d0d;
+    color: #00ff99;
+    border: 1px solid #333;
+    border-radius: 10px;
+    padding: 15px;
+    resize: vertical;
+    font-size: 15px;
+    margin-bottom: 15px;
+    }
+    button {
+    width: 100%;
+    padding: 14px;
+    border: none;
+    border-radius: 10px;
+    background: #00aa66;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
+    margin-bottom: 15px;
+    }
+    button:hover {
+    background: #00cc77;
+    }
+    #copyBtn {
+    background: #0066cc;
+    }
+    #copyBtn:hover {
+    background: #0088ff;
+    }
+</style>
+<body>
+  <div class="container">
+    <h1>Variable Converter</h1>
+    <textarea id="input" placeholder="{BLACKPHONEICON,WHITEHOMEICON,WHITESEARCHICON}"></textarea>
+    <button id="convertBtn">Convert</button>
+    <textarea id="output" readonly placeholder="window.BLACKPHONEICON = BLACKPHONEICON;"></textarea>
+    <button id="copyBtn">Copy Output</button>
+    <button style="background: brown;" id="Clear">Clear</button>
+  </div>
+</body>
+<script>
+    const input = document.getElementById("input");
+    const output = document.getElementById("output");
+    const convertBtn = document.getElementById("convertBtn");
+    const copyBtn = document.getElementById("copyBtn");
+    const ClearBtn = document.getElementById("Clear");
+    ClearBtn.addEventListener("click", () => {
+        location.reload();
+    });
+    convertBtn.addEventListener("click", () => {
+        let text = input.value.trim();
+        text = text.replace(/[{}]/g, "");
+        const items = text.split(",").map(item => item.trim()).filter(item => item !== "");
+        const converted = items.map(item => `window.${item} = ${item};`).join("\n");
+        output.value = converted;
+    });
+    copyBtn.addEventListener("click", async () => {
+        try {
+            await navigator.clipboard.writeText(output.value);
+            copyBtn.innerText = "Copied!";
+            setTimeout(() => {
+            copyBtn.innerText = "Copy Output";
+            }, 2000);
+        } catch (error) {
+            alert("Failed to copy output.");
+        }
+    });
+</script>
+</html>

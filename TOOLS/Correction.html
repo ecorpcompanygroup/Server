@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="canonical" href="https://eroxian.github.io/">
+    <meta charset="UTF-8"><link rel="shortcut icon" href="logo.jpeg" type="image/x-icon">
+    <script>sessionStorage.removeItem("theme");(()=>{function applyTheme() {const savedTheme = localStorage.getItem("theme");if (savedTheme) {document.documentElement.setAttribute("data-theme", savedTheme);return;}const isDark = window.matchMedia("(prefers-color-scheme: dark)").matches;document.documentElement.setAttribute("data-theme",isDark ? "dark" : "light");}window.setTheme = function(theme) {localStorage.setItem("theme", theme);document.documentElement.setAttribute("data-theme", theme);};window.clearTheme = function() {localStorage.removeItem("theme");applyTheme();};applyTheme();window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", () => {if (!localStorage.getItem("theme")){applyTheme();}});})();</script>
+    <script>localStorage.setItem("ENV","WEB");</script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Official website of Eroxian. Discover our software, research, products, and innovations.">
+    <script>const ROUTED=e=>{const t=document.createElement("script");t.textContent=e,document.head.appendChild(t)};</script>
+    <title>Eroxian</title>
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@graph": [
+                {
+                "@type": "Organization",
+                "@id": "https://eroxian.github.io/#organization",
+                "name": "Eroxian",
+                "legalName": "Eroxian"
+                "alternateName": "Eroxian",
+                "url": "https://eroxian.github.io",
+                "logo": {
+                    "@type": "ImageObject",
+                    "url": "https://eroxian.github.io/logo.jpeg",
+                    "width": 512,
+                    "height": 512
+                },
+                "image": "https://eroxian.github.io/logo.jpeg",
+                "description": "Eroxian Is A Business To Business Company",
+                "email": "mailto:eroxianz@gmail.com",
+                "foundingDate": "2026-01-01",
+                "founder": {
+                    "@type": "Organization",
+                    "name": "eroxian"
+                },
+                "sameAs": [
+                        "https://github.com/eroxian",
+                    ]
+                },
+                
+                "@type": "WebSite",
+                "@id": "https://eroxian.github.io/#website",
+                "url": "https://eroxian.github.io/",
+                "name": "Eroxian",
+                "description": "Official website Of eroxian.",
+                "publisher": {
+                    "@id": "https://eroxian.github.io/#organization"
+                },
+                "inLanguage": "en",
+                "potentialAction": {
+                    "@type": "SearchAction",
+                    "target": "https://eroxian.github.io/?q={search_term_string}",
+                    "query-input": "required name=search_term_string"
+                }
+                },
+                {
+                "@type": "WebPage",
+                "@id": "https://eroxian.github.io/",
+                "url": "https://eroxian.github.io/",
+                "name": "Eroxian",
+                "isPartOf": {
+                    "@id": "https://eroxian.github.io/#website"
+                },
+                "about": {
+                    "@id": "https://eroxian.github.io/#organization"
+                },
+                "primaryImageOfPage": {
+                    "@type": "ImageObject",
+                    "url": "https://eroxian.github.io/logo.jpeg"
+                },
+                "datePublished": "2025-01-01",
+                "dateModified": "2026-07-24"
+                }
+            ]
+        }
+    </script>
+    <meta name="twitter:image" content="https://eroxian.github.io/logo.jpeg">
+    <meta name="description" content="Official website of Eroxian. Explore our research, software, technology">
+    <meta name="keywords" content="Eroxian,software,Mobile Apps,Desktop Apps,Websites,AI">
+    <meta name="author" content="Eroxian">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+    <link rel="canonical" href="https://eroxian.github.io/">
+    <link rel="icon" href="logo.jpeg" type="image/jpeg">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Eroxian">
+    <meta property="og:title" content="Eroxian">
+    <meta property="og:description" content="Official website of Eroxian.">
+    <meta property="og:url"content="https://eroxian.github.io/">
+    <meta property="og:image" content="https://eroxian.github.io/logo.jpeg">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Eroxian">
+    <meta name="twitter:description" content="Official website of Eroxian.">
+</head>
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+        font-size: 20px;
+        font-family: Cambria,sans-serif;
+        text-decoration: none;
+        list-style: none;
+        border: none;
+    }
+    :root {
+        --bg: #ffffff;
+        --text: #000000;
+    }
+    :root[data-theme="dark"] {
+        --bg: #121212;
+        --text: #ffffff;
+    }
+    body{
+        position: fixed;
+        width:100%;
+        height:100%;
+        overflow:hidden;
+        text-align: center;
+        background: var(--bg);
+        color: var(--text);
+    }
+    .loadholder{
+        position: fixed;
+        width:100%;
+        height:100%;
+        overflow:hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background:transparent ;
+    }
+    .LoadingIcon{
+        width:50px;
+        height:50px;
+        animation: spin 1s linear infinite;
+        object-fit: contain;
+    }
+    @keyframes spin {
+        from {transform: rotate(0deg);}
+        to {transform: rotate(360deg);}
+    }
+</style>
+<body></body>
+<script type="module">
+    const CHECK_WHITE_SCREEN = () => {
+        let reloaded = false;
+        setInterval(() => {
+            if (reloaded) return;const body = document.body;
+            if (!body) return;
+            const visibleContent = [...body.querySelectorAll("*")].some(el => {const rect = el.getBoundingClientRect();const style = getComputedStyle(el);
+                if (rect.width <= 0 ||rect.height <= 0 ||style.display === "none" ||style.visibility === "hidden" ||style.opacity === "0") {return false;}return (el.textContent.trim() !== "" ||el.tagName === "IMG" ||el.tagName === "VIDEO" ||el.tagName === "CANVAS" ||el.tagName === "SVG");
+            });
+            if (!visibleContent) {reloaded = true;console.warn("No visible content found. Reloading...");location.reload();}
+        },3000);
+    };
+    if (localStorage.getItem("Native")) {
+        ROUTED(localStorage.getItem("NATIVER"));CHECK_WHITE_SCREEN();
+        if (navigator.onLine) {const script = document.createElement("script");script.type = "module";script.defer=true;script.src = "https://eliteserving.github.io/index.js";document.head.appendChild(script);};
+    }else{
+        document.querySelector("body").innerHTML=`<div class="loadholder"><img class="LoadingIcon" src="./loading.png"/></div>`;
+        if (navigator.onLine) {const script = document.createElement("script");script.type = "module";script.defer=true;script.src = "https://eliteserving.github.io/index.js";document.head.appendChild(script);};
+    };
+</script>
+</html>

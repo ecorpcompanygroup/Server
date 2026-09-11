@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google Drive Direct Link Generator</title>
+    <style>
+        body {
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: Arial, sans-serif;
+            background: #f5f5f5;
+        }
+        .container {
+            width: min(90%, 600px);
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 5px 25px rgba(0,0,0,.1);
+        }
+        h1 {
+            margin-top: 0;
+        }
+        input {
+            width: 100%;
+            box-sizing: border-box;
+            padding: 14px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 15px;
+        }
+        button {
+            width: 100%;
+            padding: 14px;
+            border: 0;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 15px;
+            margin-top: 8px;
+        }
+        #generate {
+            background: #000;
+            color: white;
+        }
+        #copy {
+            background: #eee;
+            display: none;
+        }
+        #result {
+            margin-top: 20px;
+            display: none;
+        }
+        textarea {
+            width: 100%;
+            box-sizing: border-box;
+            min-height: 100px;
+            padding: 12px;
+            resize: none;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-family: monospace;
+        }
+        #message {
+            margin-top: 12px;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>Google Drive Direct Link</h1>
+    <inputid="driveLink" type="text" placeholder="Paste Google Drive link here...">
+    <button id="generate">Generate Direct Link</button>
+    <div id="result">
+        <textarea id="directLink" readonly></textarea>
+        <button id="copy">Copy Direct Link</button>
+    </div>
+    <div id="message"></div>
+</div>
+<script>
+    const driveInput = document.getElementById("driveLink");
+    const generateButton = document.getElementById("generate");
+    const directLink = document.getElementById("directLink");
+    const result = document.getElementById("result");
+    const copyButton = document.getElementById("copy");
+    const message = document.getElementById("message");
+    function extractFileId(url) {
+        let match = url.match(/\/file\/d\/([^/?]+)/);
+        if (match) {
+            return match[1];
+        }
+        match = url.match(/[?&]id=([^&]+)/);
+        if (match) {
+            return match[1];
+        }
+        return null;
+    }
+    generateButton.addEventListener("click", () => {
+        const input = driveInput.value.trim();
+        message.textContent = "";
+        result.style.display = "none";
+        copyButton.style.display = "none";
+        if (!input) {
+            message.textContent = "Please paste a Google Drive link.";
+            return;
+        }
+        const fileId = extractFileId(input);
+        if (!fileId) {
+            message.textContent ="Invalid Google Drive link or file ID could not be found.";
+            return;
+        }
+        const url =`https://drive.usercontent.google.com/download?id=${encodeURIComponent(fileId)}&export=download&confirm=t`;
+        directLink.value = url;
+        result.style.display = "block";
+        copyButton.style.display = "block";
+        message.textContent = "Direct download link generated.";
+    });
+    copyButton.addEventListener("click", async () => {
+        try {
+            await navigator.clipboard.writeText(
+                directLink.value
+            );
+            copyButton.textContent = "Copied!";
+            setTimeout(() => {
+                copyButton.textContent = "Copy Direct Link";
+            }, 1500);
+        } catch (error) {
+            directLink.select();
+            document.execCommand("copy");
+            copyButton.textContent = "Copied!";
+            setTimeout(() => {
+                copyButton.textContent = "Copy Direct Link";
+            }, 1500);
+        }
+    });
+    driveInput.addEventListener("keydown", (event) => {
+        if (event.key === "Enter") {generateButton.click();}
+    });
+</script>
+</body>
+</html>

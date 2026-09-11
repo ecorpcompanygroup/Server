@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Import → Export Generator Pro</title>
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Inter,Segoe UI,sans-serif;
+}
+body{
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:30px;
+    background:linear-gradient(135deg,#0f172a,#1e293b,#312e81);
+}
+.container{
+    width:min(1100px,100%);
+    backdrop-filter:blur(18px);
+    background:rgba(255,255,255,.08);
+    border:1px solid rgba(255,255,255,.15);
+    border-radius:24px;
+    padding:30px;
+    box-shadow:
+    0 20px 60px rgba(0,0,0,.35),
+    inset 0 1px 0 rgba(255,255,255,.15);
+}
+h1{
+    color:white;
+    text-align:center;
+    margin-bottom:10px;
+}
+.subtitle{
+    text-align:center;
+    color:rgba(255,255,255,.7);
+    margin-bottom:25px;
+}
+textarea{
+    width:100%;
+    min-height:260px;
+    resize:vertical;
+    border:none;
+    outline:none;
+    border-radius:18px;
+    padding:18px;
+    font-size:15px;
+    background:rgba(255,255,255,.08);
+    color:white;
+    border:1px solid rgba(255,255,255,.12);
+}
+textarea::placeholder{
+    color:rgba(255,255,255,.45);
+}
+.buttons{
+    display:flex;
+    flex-wrap:wrap;
+    gap:12px;
+    margin:20px 0;
+}
+button{
+    border:none;
+    cursor:pointer;
+    padding:12px 22px;
+    border-radius:12px;
+    color:white;
+    font-size:15px;
+    font-weight:600;
+    transition:.25s;
+}
+button:hover{
+    transform:translateY(-2px);
+    filter:brightness(1.08);
+}
+.generate{
+    background:linear-gradient(135deg,#4f46e5,#7c3aed);
+}
+.copy{
+    background:linear-gradient(135deg,#0891b2,#06b6d4);
+}
+.clear{
+    background:linear-gradient(135deg,#dc2626,#ef4444);
+}
+.output{
+    min-height:180px;
+    white-space:pre-wrap;
+    word-break:break-word;
+    padding:18px;
+    border-radius:18px;
+    background:rgba(255,255,255,.06);
+    border:1px solid rgba(255,255,255,.12);
+    color:white;
+    font-family:Consolas,monospace;
+}
+.status{
+    margin-top:15px;
+    color:#7dd3fc;
+    font-size:14px;
+}
+</style>
+</head>
+<body>
+<div class="container">
+    <h1>Import → Export Generator Pro</h1>
+    <p class="subtitle">
+        Paste any number of import statements and generate a single alphabetical export.
+    </p>
+    <textarea id="input" placeholder='Example: import User from "./User"; import Button from "./Button"; import { Modal, Dialog } from "./ui"; import { Card as ProductCard } from "./Card"; import Table from "./Table";'></textarea>
+    <div class="buttons">
+        <button class="generate" onclick="generateExport()">
+            Generate Export
+        </button>
+        <button class="copy" onclick="copyOutput()">
+            Copy Result
+        </button>
+        <button class="clear" onclick="clearAll()">
+            Clear
+        </button>
+    </div>
+    <div id="output" class="output">Your export statement will appear here...</div>
+    <div id="status" class="status"></div>
+</div>
+<script>
+    function generateExport(){
+        const input =document.getElementById("input").value;
+        const exportsSet = new Set();
+        const defaultImports =input.matchAll(/import\s+([A-Za-z_$][\w$]*)\s+from/g);
+        for(const match of defaultImports){exportsSet.add(match[1]);}
+        const namedImports =input.matchAll(/import\s*\{([^}]*)\}\s*from/g);
+        for(const match of namedImports){const items =match[1].split(",").map(item => item.trim()).filter(Boolean);items.forEach(item => {
+            if(item.includes(" as ")){
+                const alias =item.split(/\s+as\s+/i)[1].trim();
+                    exportsSet.add(alias);
+                }else{
+                    exportsSet.add(item);
+                }
+            });
+        }
+        const sorted =[...exportsSet].sort((a,b)=>a.localeCompare(b));
+        if(sorted.length === 0){
+            document.getElementById("output").textContent ="No imports found.";
+            setStatus("Nothing to export.");
+            return;
+        }
+        const result =`export {${sorted.join(",")}};`;
+        document.getElementById("output").textContent = result;
+        setStatus(`${sorted.length} imports exported successfully.`);
+    }
+    async function copyOutput(){
+        const text =document.getElementById("output").textContent;
+        if(!text.trim()) return;
+        try{
+            await navigator.clipboard.writeText(text);
+            setStatus("Copied to clipboard ✓");
+        }
+        catch{
+            setStatus("Copy failed.");
+        }
+    }
+    function clearAll(){
+        document.getElementById("input").value = "";
+        document.getElementById("output").textContent ="Your export statement will appear here...";
+        setStatus("Cleared.");
+    }
+    function setStatus(message){
+        const status =document.getElementById("status");
+        status.textContent = message;
+        clearTimeout(status.timer);
+        status.timer =setTimeout(()=>{
+            status.textContent = "";
+        },3000);
+    }
+</script>
+</body>
+</html>

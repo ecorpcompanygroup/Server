@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Image Compressor & Base64 Converter</title>
+<style>
+    *{
+        margin:0;
+        padding:0;
+        box-sizing:border-box;
+        font-family:Arial,sans-serif;
+    }
+    body{
+        background:#0f0f0f;
+        color:#fff;
+        min-height:100vh;
+        display:flex;
+        justify-content:center;
+        align-items:center;
+        padding:20px;
+    }
+    .container{
+        width:100%;
+        max-width:900px;
+        background:#1b1b1b;
+        border-radius:18px;
+        padding:25px;
+        box-shadow:0 0 20px rgba(0,0,0,.5);
+    }
+    h1{
+        text-align:center;
+        margin-bottom:20px;
+    }
+    .upload-box{
+        border:2px dashed #555;
+        border-radius:14px;
+        padding:40px;
+        text-align:center;
+        cursor:pointer;
+        transition:.3s;
+        font-size:18px;
+    }
+    .upload-box:hover{
+        border-color:#00ff99;
+        background:#151515;
+    }
+    input[type=file]{
+        display:none;
+    }
+    .preview{
+        margin-top:25px;
+        display:none;
+        justify-content:center;
+    }
+    .preview img{
+        max-width:100%;
+        max-height:350px;
+        border-radius:12px;
+        border:1px solid #333;
+    }
+    textarea{
+        width:100%;
+        height:250px;
+        margin-top:25px;
+        resize:vertical;
+        background:#111;
+        color:#00ff99;
+        border:1px solid #333;
+        border-radius:12px;
+        padding:15px;
+        font-size:13px;
+        word-break:break-all;
+    }
+    .stats{
+        margin-top:20px;
+        display:flex;
+        gap:15px;
+        flex-wrap:wrap;
+    }
+    .stat{
+        flex:1;
+        min-width:180px;
+        background:#111;
+        border-radius:10px;
+        padding:12px;
+        text-align:center;
+    }
+    button{
+        width:100%;
+        margin-top:18px;
+        padding:15px;
+        border:none;
+        border-radius:12px;
+        font-size:16px;
+        cursor:pointer;
+        transition:.3s;
+        color:#fff;
+    }
+    #copyBtn{
+        background:#00aa66;
+    }
+    #copyBtn:hover{
+        background:#00cc77;
+    }
+    #downloadBtn{
+        background:#0077ff;
+    }
+    #downloadBtn:hover{
+        background:#3399ff;
+    }
+    #clearBtn{
+        background:#8b2d2d;
+    }
+    #clearBtn:hover{
+        background:#a83d3d;
+    }
+</style>
+</head>
+<body>
+    <div class="container">
+        <h1>Image Compressor & Base64 Converter</h1>
+        <label class="upload-box" for="fileInput">📁 Click to Upload Any Image<br><small style="display:block;margin-top:8px;color:#aaa;">Automatically compressed to a maximum of 50,000 Base64 characters</small></label>
+        <input type="file" id="fileInput" accept="image/*">
+        <div class="preview" id="preview"><img id="previewImg"></div>
+        <textarea id="output" readonly placeholder="Base64 data will appear here..."></textarea>
+        <div class="stats">
+            <div class="stat">Characters<br><br><span id="charCount">0</span></div>
+            <div class="stat">Image Size<br><br><span id="fileSize">0 KB</span></div>
+            <div class="stat">Image Type<br><br><span id="fileType">-</span></div>
+        </div>
+        <button id="copyBtn">Copy Base64</button>
+        <button id="downloadBtn">Download Base64 (.txt)</button>
+        <button id="clearBtn">Clear</button>
+    </div>
+<script>
+    const MAX_CHARS = 50000;
+
+    const fileInput=document.getElementById("fileInput");
+    const preview=document.getElementById("preview");
+    const previewImg=document.getElementById("previewImg");
+    const output=document.getElementById("output");
+    const charCount=document.getElementById("charCount");
+    const fileSize=document.getElementById("fileSize");
+    const fileType=document.getElementById("fileType");
+    const copyBtn=document.getElementById("copyBtn");
+    const downloadBtn=document.getElementById("downloadBtn");
+    const clearBtn=document.getElementById("clearBtn");
+
+    async function imageToDataURL(file, maxWidth, maxHeight, quality, mimeType) {
+        const bitmap = await createImageBitmap(file);
+
+        const scale = Math.min(
+            1,
+            maxWidth / bitmap.width,
+            maxHeight / bitmap.height
+        );
+
+        const width = Math.max(1, Math.round(bitmap.width * scale));
+        const height = Math.max(1, Math.round(bitmap.height * scale));
+
+        const canvas = document.createElement("canvas");
+        canvas.width = width;
+        canvas.height = height;
+
+        const ctx = canvas.getContext("2d", { alpha: true });
+        ctx.drawImage(bitmap, 0, 0, width, height);
+
+        bitmap.close();
+
+        return {
+            dataURL: canvas.toDataURL(mimeType, quality),
+            width,
+            height
+        };
+    }
+
+    async function compressToLimit(file) {
+        // JPEG is much smaller for photographs. PNG is kept for images
+        // where transparency is important, but WebP is preferred when supported.
+        const originalType = file.type.toLowerCase();
+        const supportsWebP = document.createElement("canvas")
+            .toDataURL("image/webp")
+            .startsWith("data:image/webp");
+
+        let mimeType = originalType === "image/png" && !supportsWebP
+            ? "image/png"
+            : (supportsWebP ? "image/webp" : "image/jpeg");
+
+        // Start with sensible dimensions and quality.
+        let maxWidth = 1600;
+        let maxHeight = 1600;
+        let quality = 0.90;
+
+        let result = await imageToDataURL(
+            file, maxWidth, maxHeight, quality, mimeType
+        );
+
+        // Binary-search quality first.
+        let best = null;
+        let low = 0.10;
+        let high = 0.95;
+
+        for (let i = 0; i < 9; i++) {
+            const q = (low + high) / 2;
+            const candidate = await imageToDataURL(
+                file, maxWidth, maxHeight, q, mimeType
+            );
+
+            if (candidate.dataURL.length <= MAX_CHARS) {
+                best = candidate;
+                low = q;
+            } else {
+                high = q;
+            }
+        }
+
+        // If quality alone cannot reach 50,000, progressively reduce dimensions.
+        if (!best) {
+            let width = 1400;
+
+            for (let i = 0; i < 8; i++) {
+                const candidate = await imageToDataURL(
+                    file, width, width, 0.82, mimeType
+                );
+
+                if (candidate.dataURL.length <= MAX_CHARS) {
+                    best = candidate;
+                    break;
+                }
+
+                width = Math.round(width * 0.80);
+            }
+        }
+
+        // Final fallback: keep reducing dimensions until it fits.
+        if (!best) {
+            let width = 900;
+
+            for (let i = 0; i < 10; i++) {
+                const candidate = await imageToDataURL(
+                    file, width, width, 0.70, mimeType
+                );
+
+                if (candidate.dataURL.length <= MAX_CHARS) {
+                    best = candidate;
+                    break;
+                }
+
+                width = Math.max(100, Math.round(width * 0.75));
+            }
+        }
+
+        // If a browser cannot produce an image under the requested limit,
+        // return the smallest generated result rather than producing invalid data.
+        if (!best) {
+            best = await imageToDataURL(
+                file, 100, 100, 0.50, mimeType
+            );
+        }
+
+        return best;
+    }
+
+    fileInput.addEventListener("change", async ()=>{
+        const file=fileInput.files[0];
+        if(!file) return;
+
+        fileType.textContent=file.type || "Unknown";
+        fileSize.textContent=(file.size/1024).toFixed(2)+" KB";
+        output.value="Compressing...";
+        charCount.textContent="...";
+
+        try {
+            const result = await compressToLimit(file);
+            const base64 = result.dataURL;
+
+            preview.style.display="flex";
+            previewImg.src=base64;
+            output.value=base64;
+            charCount.textContent=base64.length.toLocaleString();
+
+            if (base64.length <= MAX_CHARS) {
+                charCount.textContent += " / 50,000 ✓";
+            } else {
+                charCount.textContent += " / 50,000 ⚠";
+                alert(
+                    "The image could not be compressed below 50,000 characters. " +
+                    "Try a simpler/smaller image."
+                );
+            }
+        } catch(error) {
+            console.error(error);
+            output.value="";
+            charCount.textContent="0";
+            alert("Unable to compress the image.");
+        }
+    });
+
+    copyBtn.addEventListener("click",async()=>{
+        if(output.value==="" || output.value==="Compressing..."){
+            alert("No Base64 available.");
+            return;
+        }
+
+        try{
+            await navigator.clipboard.writeText(output.value);
+            copyBtn.textContent="Copied!";
+            setTimeout(()=>{
+                copyBtn.textContent="Copy Base64";
+            },2000);
+        }catch{
+            alert("Copy failed.");
+        }
+    });
+
+    downloadBtn.addEventListener("click",()=>{
+        if(output.value==="" || output.value==="Compressing..."){
+            alert("Nothing to download.");
+            return;
+        }
+
+        const blob=new Blob([output.value],{
+            type:"text/plain"
+        });
+
+        const a=document.createElement("a");
+        a.href=URL.createObjectURL(blob);
+        a.download="image-base64.txt";
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(a.href);
+    });
+
+    clearBtn.addEventListener("click",()=>{
+        fileInput.value="";
+        output.value="";
+        preview.style.display="none";
+        previewImg.src="";
+        charCount.textContent="0";
+        fileSize.textContent="0 KB";
+        fileType.textContent="-";
+    });
+</script>
+</body>
+</html>

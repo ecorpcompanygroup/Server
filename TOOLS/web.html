@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WEBLIVE - Pure JavaScript WebRTC</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,Helvetica,sans-serif;
+}
+
+body{
+    background:#101010;
+    color:white;
+}
+
+header{
+    background:#1b1b1b;
+    padding:15px;
+    text-align:center;
+    font-size:22px;
+    font-weight:bold;
+}
+
+main{
+
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(350px,1fr));
+    gap:20px;
+    padding:20px;
+
+}
+
+video{
+
+    width:100%;
+    background:black;
+    border-radius:10px;
+
+}
+
+.controls{
+
+    display:flex;
+    justify-content:center;
+    gap:15px;
+    padding:20px;
+    flex-wrap:wrap;
+
+}
+
+button{
+
+    padding:12px 18px;
+    border:none;
+    cursor:pointer;
+    border-radius:6px;
+    font-size:15px;
+
+}
+
+textarea{
+
+    width:95%;
+    margin:10px auto;
+    display:block;
+    height:120px;
+    resize:vertical;
+    padding:10px;
+    font-family:monospace;
+
+}
+
+.status{
+
+    text-align:center;
+    padding:10px;
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+WEBLIVE - Pure JavaScript WebRTC
+
+</header>
+
+<main>
+
+<div>
+
+<h3>My Camera</h3>
+
+<video
+id="localVideo"
+autoplay
+playsinline
+muted
+></video>
+
+</div>
+
+<div>
+
+<h3>Remote Camera</h3>
+
+<video
+id="remoteVideo"
+autoplay
+playsinline
+></video>
+
+</div>
+
+</main>
+
+<div class="controls">
+
+<button id="startCamera">
+Start Camera
+</button>
+
+<button id="createOffer">
+Create Offer
+</button>
+
+<button id="createAnswer">
+Create Answer
+</button>
+
+<button id="setAnswer">
+Set Answer
+</button>
+
+</div>
+
+<div class="status" id="status">
+
+Waiting...
+
+</div>
+
+<textarea
+id="signalData"
+placeholder="Paste Offer / Answer Here"
+></textarea>
+
+<script>
+
+const WEBLIVE = ()=>{
+
+let peer;
+
+let localStream;
+
+const localVideo=document.getElementById("localVideo");
+
+const remoteVideo=document.getElementById("remoteVideo");
+
+const signal=document.getElementById("signalData");
+
+const status=document.getElementById("status");
+
+peer=new RTCPeerConnection({
+
+iceServers:[
+{
+urls:"stun:stun.l.google.com:19302"
+}
+]
+
+});
+
+peer.onconnectionstatechange=()=>{
+
+status.innerHTML=
+"Connection : "+peer.connectionState;
+
+};
+
+peer.onicecandidate=(event)=>{
+
+if(event.candidate==null){
+
+signal.value=
+JSON.stringify(peer.localDescription);
+
+}
+
+};
+
+peer.ontrack=(event)=>{
+
+remoteVideo.srcObject=
+event.streams[0];
+
+};
+
+async function startCamera(){
+
+localStream=
+await navigator.mediaDevices.getUserMedia({
+
+video:true,
+audio:true
+
+});
+
+localVideo.srcObject=
+localStream;
+
+localStream
+.getTracks()
+.forEach(track=>{
+
+peer.addTrack(track,localStream);
+
+});
+
+}
+
+async function createOffer(){
+
+const offer=
+await peer.createOffer();
+
+await peer.setLocalDescription(offer);
+
+}
+
+async function createAnswer(){
+
+const offer=
+JSON.parse(signal.value);
+
+await peer.setRemoteDescription(offer);
+
+const answer=
+await peer.createAnswer();
+
+await peer.setLocalDescription(answer);
+
+}
+
+async function setAnswer(){
+
+const answer=
+JSON.parse(signal.value);
+
+await peer.setRemoteDescription(answer);
+
+}
+
+document
+.getElementById("startCamera")
+.onclick=startCamera;
+
+document
+.getElementById("createOffer")
+.onclick=createOffer;
+
+document
+.getElementById("createAnswer")
+.onclick=createAnswer;
+
+document
+.getElementById("setAnswer")
+.onclick=setAnswer;
+
+};
+
+WEBLIVE();
+
+</script>
+
+</body>
+</html>

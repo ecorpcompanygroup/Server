@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Export Merger Pro</title>
+<style>
+    *{
+        margin:0;
+        padding:0;
+        box-sizing:border-box;
+        font-family:Inter,Segoe UI,sans-serif;
+    }
+    body{
+        min-height:100vh;
+        display:flex;
+        justify-content:center;
+        align-items:center;
+        padding:30px;
+        background:linear-gradient(135deg,#0f172a,#1e293b,#312e81);
+    }
+    .container{
+        width:min(1000px,100%);
+        backdrop-filter:blur(18px);
+        background:rgba(255,255,255,.08);
+        border:1px solid rgba(255,255,255,.15);
+        border-radius:24px;
+        padding:30px;
+        box-shadow:0 20px 60px rgba(0,0,0,.35),inset 0 1px 0 rgba(255,255,255,.15);
+    }
+    h1{
+        text-align:center;
+        color:white;
+        margin-bottom:10px;
+        font-size:2rem;
+        font-weight:700;
+    }
+    .subtitle{
+        text-align:center;
+        color:rgba(255,255,255,.7);
+        margin-bottom:25px;
+    }
+    textarea{
+        width:100%;
+        min-height:220px;
+        resize:vertical;
+        border:none;
+        outline:none;
+        border-radius:18px;
+        padding:18px;
+        font-size:15px;
+        background:rgba(255,255,255,.08);
+        color:white;
+        border:1px solid rgba(255,255,255,.12);
+    }
+    textarea::placeholder{
+        color:rgba(255,255,255,.45);
+    }
+    .buttons{
+        display:flex;
+        gap:12px;
+        flex-wrap:wrap;
+        margin:20px 0;
+    }
+    button{
+        border:none;
+        cursor:pointer;
+        padding:12px 20px;
+        border-radius:12px;
+        color:white;
+        font-size:15px;
+        font-weight:600;
+        transition:.25s;
+    }
+    .merge{
+        background:linear-gradient(135deg,#4f46e5,#7c3aed);
+    }
+    .copy{
+        background:linear-gradient(135deg,#0891b2,#06b6d4);
+    }
+    .clear{
+        background:linear-gradient(135deg,#dc2626,#ef4444);
+    }
+    button:hover{
+        transform:translateY(-2px);
+        filter:brightness(1.1);
+    }
+    .output{
+        min-height:150px;
+        white-space:pre-wrap;
+        word-break:break-word;
+        padding:18px;
+        border-radius:18px;
+        background:rgba(255,255,255,.06);
+        border:1px solid rgba(255,255,255,.12);
+        color:#fff;
+        font-family:Consolas,monospace;
+    }
+    .status{
+        margin-top:15px;
+        color:#7dd3fc;
+        font-size:14px;
+    }
+</style>
+</head>
+<body>
+    <div class="container">
+        <h1>Export Merger Pro</h1>
+        <p class="subtitle">Merge, sort, and deduplicate exports instantly.</p>
+        <textarea id="input" placeholder="Paste export statements here..."></textarea>
+        <div class="buttons">
+            <button class="merge" onclick="mergeExports()">Merge Exports</button>
+            <button class="copy" onclick="copyOutput()">Copy Result</button>
+            <button class="clear" onclick="clearAll()">Clear</button>
+        </div>
+        <div id="output" class="output">Your merged export will appear here...</div>
+        <div id="status" class="status"></div>
+    </div>
+<script>
+    function mergeExports(){
+        const input =document.getElementById("input").value;
+        const exportsSet = new Set();
+        const matches =input.matchAll(/export\s*\{([^}]*)\}/g);
+        for(const match of matches){
+            const items = match[1]
+                .split(",")
+                .map(item => item.trim())
+                .filter(Boolean);
+            items.forEach(item =>
+                exportsSet.add(item)
+            );
+        }
+        const sorted =[...exportsSet].sort((a,b)=> a.localeCompare(b));
+        const result =`export{${sorted.join(",")}};`;
+        document.getElementById("output").textContent = result;
+        setStatus(`${sorted.length} exports merged successfully.`);
+    }
+    async function copyOutput(){
+        const text =document.getElementById("output").textContent;
+        if(!text.trim()) return;
+        try{
+            await navigator.clipboard.writeText(text);
+            setStatus("Copied to clipboard ✓");
+        }
+        catch{
+            setStatus("Copy failed.");
+        }
+    }
+    function clearAll(){
+        document.getElementById("input").value = "";
+        document.getElementById("output").textContent ="Your merged export will appear here...";
+        setStatus("Cleared.");
+    }
+    function setStatus(message){
+        const status =document.getElementById("status");
+        status.textContent = message;
+        clearTimeout(status.timer);
+        status.timer =setTimeout(()=>{
+            status.textContent = "";
+        },3000);
+    }
+</script>
+</body>
+</html>

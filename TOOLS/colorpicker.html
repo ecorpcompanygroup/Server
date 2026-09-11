@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Image Color Picker</title>
+<style>
+* {
+    box-sizing: border-box;
+}
+body {
+    margin: 0;
+    min-height: 100vh;
+    background: #111;
+    color: #fff;
+    font-family: Arial, sans-serif;
+}
+header {
+    padding: 20px;
+    text-align: center;
+    border-bottom: 1px solid #333;
+}
+main {
+    max-width: 1100px;
+    margin: auto;
+    padding: 20px;
+}
+#dropZone {
+    border: 2px dashed #555;
+    border-radius: 12px;
+    padding: 40px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+#dropZone.dragging {
+    border-color: #fff;
+}
+input[type="file"] {
+    display: none;
+}
+.button {
+    display: inline-block;
+    padding: 12px 18px;
+    background: #fff;
+    color: #111;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+}
+#imageContainer {
+    display: none;
+    background: #222;
+    border-radius: 12px;
+    padding: 10px;
+    overflow: auto;
+    text-align: center;
+}
+canvas {
+    max-width: 100%;
+    height: auto;
+    cursor: crosshair;
+}
+#colorPanel {
+    display: none;
+    margin-top: 20px;
+    padding: 20px;
+    background: #1d1d1d;
+    border-radius: 12px;
+}
+#colorPreview {
+    width: 100px;
+    height: 100px;
+    border-radius: 10px;
+    border: 2px solid #555;
+    margin-bottom: 15px;
+}
+.colorValue {
+    font-family: monospace;
+    font-size: 20px;
+    margin: 8px 0;
+}
+button {
+    border: 0;
+    border-radius: 8px;
+    padding: 11px 16px;
+    margin: 5px 5px 0 0;
+    cursor: pointer;
+    font-weight: bold;
+}
+#copyHex,
+#copyRgb {
+    background: #fff;
+    color: #111;
+}
+#downloadColor {
+    background: #444;
+    color: #fff;
+}
+#coordinates {
+    color: #aaa;
+    font-family: monospace;
+    margin-top: 10px;
+}
+</style>
+</head>
+<body>
+<header>
+    <h1>Image Color Picker</h1>
+    <p>Upload an image and click any part to pick its color.</p>
+</header>
+<main>
+    <div id="dropZone">
+        <label class="button" for="imageInput">Choose Image</label>
+        <input id="imageInput" type="file" accept="image/*">
+        <p>or drag and drop an image here</p>
+    </div>
+    <div id="imageContainer">
+        <canvas id="canvas"></canvas>
+    </div>
+    <div id="colorPanel">
+        <div id="colorPreview"></div>
+        <div class="colorValue">HEX:<span id="hexValue">#000000</span></div>
+        <div class="colorValue">RGB:<span id="rgbValue">rgb(0, 0, 0)</span></div>
+        <div id="coordinates"> X: 0 | Y: 0</div>
+        <button id="copyHex">Copy HEX</button>
+        <button id="copyRgb">Copy RGB</button>
+        <button id="downloadColor">Download Color</button>
+    </div>
+</main>
+<script>
+    const imageInput =document.getElementById("imageInput");
+    const dropZone =document.getElementById("dropZone");
+    const imageContainer =document.getElementById("imageContainer");
+    const colorPanel =document.getElementById("colorPanel");
+    const canvas =document.getElementById("canvas");
+    const ctx =canvas.getContext("2d", {willReadFrequently: true});
+    const colorPreview =document.getElementById("colorPreview");
+    const hexValue =document.getElementById("hexValue");
+    const rgbValue =document.getElementById("rgbValue");
+    const coordinates =document.getElementById("coordinates");
+    const copyHex =document.getElementById("copyHex");
+    const copyRgb =document.getElementById("copyRgb");
+    const downloadColor =document.getElementById("downloadColor");
+    let currentHex = "#000000";
+    let currentRgb = "rgb(0, 0, 0)";
+    let imageName = "picked-color";
+    imageInput.addEventListener("change", function () {
+        const file = this.files[0];
+        if (!file) {
+            return;
+        }
+        loadImage(file);
+    });
+    dropZone.addEventListener("dragover", function (event) {
+        event.preventDefault();
+        dropZone.classList.add("dragging");
+    });
+    dropZone.addEventListener("dragleave", function () {
+        dropZone.classList.remove("dragging");
+    });
+    dropZone.addEventListener("drop", function (event) {
+        event.preventDefault();dropZone.classList.remove("dragging");
+        const file =event.dataTransfer.files[0];
+        if (
+            file &&file.type.startsWith("image/")
+        ) {
+            loadImage(file);
+        }
+    });
+    function loadImage(file) {
+        imageName =file.name.replace(/\.[^/.]+$/, "");
+        const image =new Image();
+        image.onload = function () {
+            canvas.width =image.naturalWidth;
+            canvas.height =image.naturalHeight;
+            ctx.clearRect(0,0,canvas.width,canvas.height
+            );
+            ctx.drawImage(image,0,0);
+            imageContainer.style.display ="block";
+            colorPanel.style.display ="block";
+            URL.revokeObjectURL(image.src);
+        };
+        image.src =URL.createObjectURL(file);
+    }
+    canvas.addEventListener("click",
+        function (event) {
+            const rect =canvas.getBoundingClientRect();
+            const scaleX =canvas.width / rect.width;
+            const scaleY =canvas.height / rect.height;
+            const x =Math.floor((event.clientX - rect.left)* scaleX);
+            const y =Math.floor((event.clientY - rect.top)* scaleY);
+            if (x < 0 ||y < 0 ||x >= canvas.width ||y >= canvas.height) {
+                return;
+            }
+            const pixel =ctx.getImageData(x,y,1,1).data;
+            const red =pixel[0];
+            const green =pixel[1];
+            const blue =pixel[2];
+            currentRgb =`rgb(${red}, ${green}, ${blue})`;
+            currentHex ="#" +[red, green, blue].map(function (value) {return value.toString(16).padStart(2, "0");}).join("").toUpperCase();
+            colorPreview.style.background =currentHex;
+            hexValue.textContent =currentHex;
+            rgbValue.textContent =currentRgb;
+            coordinates.textContent =`X: ${x} | Y: ${y}`;
+        }
+    );
+    copyHex.addEventListener("click",
+        async function () {
+            await navigator.clipboard.writeText(currentHex);
+            const original =this.textContent;
+            this.textContent ="Copied!";
+            setTimeout(() => {
+                this.textContent =original;
+            }, 1200);
+        }
+    );
+    copyRgb.addEventListener("click",
+        async function () {
+            await navigator.clipboard.writeText(currentRgb);
+            const original =this.textContent;
+            this.textContent ="Copied!";
+            setTimeout(() => {
+                this.textContent =original;
+            }, 1200);
+        }
+    );
+    downloadColor.addEventListener("click",
+        function () {
+            const colorCanvas =document.createElement("canvas");
+            colorCanvas.width = 500;
+            colorCanvas.height = 300;
+            const colorContext =colorCanvas.getContext("2d");
+            colorContext.fillStyle =currentHex;
+            colorContext.fillRect(0,0,500,300);
+            colorContext.fillStyle ="#FFFFFF";
+            colorContext.font ="bold 30px Arial";
+            colorContext.fillText(currentHex,30,160);
+            const link =document.createElement("a");
+            link.download =`${imageName}-${currentHex.substring(1)}.png`;
+            link.href =colorCanvas.toDataURL("image/png");
+            link.click();
+        }
+    );
+</script>
+</body>
+</html>
