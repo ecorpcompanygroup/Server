@@ -83,7 +83,7 @@
     },
     {
       "NAME": "CONSTANTS",
-      "PATH": "../PAGES/PageTwentyOne.js"
+      "PATH": "./PAGES/PageTwentyOne.js"
     }
   ]
 }
