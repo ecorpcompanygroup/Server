@@ -1,8 +1,7 @@
 const SIGNINPAGE=()=>{
     DISPLAY("",`
-        <div class="appLogo"></div>
-        <h1 class="AppName">Movie Lander</h1>
-        <p id="slogan">Your Home Cinema</p>
+        <div class="appLogo"><img id="movielanderLogo" src="../ASSETS/ML-png-no-text.png"/></div>
+        
         <br>
         <input id="designInput" class="Email" type="email" placeholder="johndoe@gmail.com" >
         <br><br>
@@ -33,11 +32,15 @@ const SIGNINPAGE=()=>{
         .appLogo{
             width: 140px;
             height: 140px;
-            background-color: orange;
-            border-radius: 50%;
+            background-color: transparent;
             margin-left: auto;
             margin-right: auto;
             margin-top: 20%;
+        }
+        #movielanderLogo{
+            position: relative;
+            width: 150px;
+            height: auto;
         }
         .AppName{
             margin-top:5%;
