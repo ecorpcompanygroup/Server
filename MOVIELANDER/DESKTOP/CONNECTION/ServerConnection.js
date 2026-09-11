@@ -4,7 +4,7 @@ const CLOUDUPDATE=(ELEMENT)=>{
     const DATA={
         "action":"update",
         "spreadsheetUrl":"https://docs.google.com/spreadsheets/d/16LFihiUWEqvV5Np064F1MVQiNf9f4d12FPbiRUT73-4/edit?usp=sharing",
-        "sheetName":"ANDROID",
+        "sheetName":"DESKTOP",
         "ID":"kDY6B7G8C3I8VO6MSJ05EICDLZMS7G3JG",
         "Data":INFO
     };
