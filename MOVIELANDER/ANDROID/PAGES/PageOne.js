@@ -1,15 +1,15 @@
 const SIGNINPAGE=()=>{
     DISPLAY("",`
         <div class="appLogo"><img id="movielanderLogo" src="${MOVIELANDERNEWLOGO}"/></div>
-        <br><br>
+        <br>
         <input id="designInput" class="Email" type="email" placeholder="johndoe@gmail.com" >
         <br><br>
         <input id="designInput" class="Password" type="password" placeholder="********" >
         <br><br>
         <h1 class="ForgotPassword">Forgot Password?</h1>
-        <br><br>
+        <br>
         <button class="LoginButton">Sign In</button>
-        <br><br><br>
+        <br><br>
         <p id="createOne">Don't Have Account?<b class="Special"> Create One!</b> </p>
     `);
     const LoginButton=document.querySelector(".LoginButton");
@@ -34,7 +34,7 @@ const SIGNINPAGE=()=>{
             background-color: transparent;
             margin-left: auto;
             margin-right: auto;
-            margin-top: 30%;
+            margin-top: 25%;
         }
         #movielanderLogo{
             position: relative;

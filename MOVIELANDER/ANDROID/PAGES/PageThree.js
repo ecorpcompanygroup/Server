@@ -1,11 +1,11 @@
 const FORGOTPASSWORDPAGE=()=>{
     DISPLAY("",`
         <div class="appLogo"><img id="movielanderLogo" src="${MOVIELANDERNEWLOGO}"/></div>
-        <br><br>
+        <br>
         <input id="designInput" class="Email" type="emai" placeholder="johndoe@gmail.com" >
-        <br><br><br><br>
-        <button class="LoginButton">Recover</button>
         <br><br><br>
+        <button class="LoginButton">Recover</button>
+        <br><br>
         <p id="createOne">I Remember My Details?<b class="Special"> Login!</b> </p>
     `);
     const LoginButton=document.querySelector(".LoginButton");

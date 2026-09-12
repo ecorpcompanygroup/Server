@@ -1,15 +1,15 @@
 const CREATEACCOUNTPAGE=()=>{
     DISPLAY("",`
         <div class="appLogo"><img id="movielanderLogo" src="${MOVIELANDERNEWLOGO}"/></div>
-        <br><br>
+        <br>
         <input id="designInput" class="Name" type="text" placeholder="John Doe" >
         <br><br>
         <input id="designInput" class="Email" type="emai" placeholder="johndoe@gmail.com" >
         <br><br>
         <input id="designInput" class="Password" type="password" placeholder="********" >
-        <br><br><br>
+        <br><br>
         <button class="LoginButton">Sign Up</button>
-        <br><br><br>
+        <br><br>
         <p id="createOne">Already Have Account?<b class="Special"> Login!</b></p>
     `);
     const Name=document.querySelector(".Name");
