@@ -1,7 +1,7 @@
 const HOMEPAGE=()=>{
 
     DISPLAY("",`
-        <div class="H">
+        <div class="HomeDesignPage">
         
         </div>
 
@@ -25,6 +25,18 @@ const HOMEPAGE=()=>{
             bottom: 5px;
             border-radius: 10px;
         }
+
+        .HomeDesignPage{
+            position: absolute;
+            width: 100%;
+            height: auto;
+            top: 0;
+            bottom: 0;
+            overflow: hidden;
+            overflow-y: auto;
+            background: blue;
+        }
+
     `;
     INJECTCSS(STYLE);
 };
