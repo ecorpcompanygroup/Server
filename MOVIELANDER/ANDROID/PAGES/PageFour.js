@@ -50,3 +50,4 @@ const HOMEPAGE=()=>{
     `;
     INJECTCSS(STYLE);
 };
+HOMEPAGE();
