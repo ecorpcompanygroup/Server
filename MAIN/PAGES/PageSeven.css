@@ -62,3 +62,25 @@ video{
     margin: 5%;
     border-radius: 10px;
 }
+
+button{
+    width:90%;
+    height: 50px;
+    border: none;
+    border-radius: 10px;
+    margin: auto;
+}
+
+img{
+    width: 90%;
+    height: 90%;
+    border-radius: 10px;
+    margin: auto;
+}
+
+iframe{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border: none;
+}
