@@ -48,20 +48,16 @@ const PROFILEPAGE=()=>{
         </div>
         
     `);
+    CLICKED(".LeftIcon",()=>{
+        ROUTE("",HOMEPAGE,"HOMEPAGE");
+    });
     ICONTHEME(".LeftIcon",WHITEBACKICON,BLACKBACKICON);
     ICONTHEME("#CommunityIcon",WHITEGROUPICON,WHITEGROUPICON);
     ICONTHEME("#SettingsIcon",WHITESETTINGSICON,WHITESETTINGSICON);
     ICONTHEME("#NotificationsIcon",WHITENOTIFICATIONICON,WHITENOTIFICATIONICON);
     ICONTHEME("#PremiumIcon",WHITESUBSCRIPTIONICON,WHITESUBSCRIPTIONICON);
     ICONTHEME("#ContactIcon",WHITEPHONEICON,WHITEPHONEICON);
-
-    const LeftIcon=document.querySelector(".LeftIcon");
-    LeftIcon.addEventListener("click",()=>{
-        ROUTE("",HOMEPAGE,"HOMEPAGE");
-    });
-
     const STYLES=`
-
         .RightText{
             margin-right: 2%;
         }

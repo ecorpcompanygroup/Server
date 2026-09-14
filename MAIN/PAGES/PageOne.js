@@ -53,7 +53,8 @@ const DISPLAY=(ELEMENT,DATA)=>{
         BODY.innerHTML=DATA;
     };
 };
-const THEMER=(ELEMENT)=>{
+const THEMER=(NAME)=>{
+    const ELEMENT=document.querySelector(NAME);
     if (sessionStorage.getItem("theme") === "dark" ) {
         ELEMENT.style.color="#FFFFFF";
     } else {
@@ -79,4 +80,10 @@ const ICONTHEME=(NAME,LIGHT,DARK)=>{
     } else {
         ELEMENT.src=DARK;
     };
+};
+const CLICKED=(NAME,CALLBACK)=>{
+    const ELEMENT=document.querySelector(NAME); 
+    ELEMENT.addEventListener("click",()=>{
+        CALLBACK(ELEMENT);
+    });
 };

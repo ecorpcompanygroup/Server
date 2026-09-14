@@ -10,12 +10,9 @@ const CATERGORYPAGE=()=>{
         
     `);
     ICONTHEME(".LeftIcon",WHITEBACKICON,BLACKBACKICON);
-
-    const LeftIcon=document.querySelector(".LeftIcon");
-    LeftIcon.addEventListener("click",()=>{
+    CLICKED(".LeftIcon",()=>{
         ROUTE("",HOMEPAGE,"HOMEPAGE");
     });
-
     const STYLES=`
 
         .RightText{

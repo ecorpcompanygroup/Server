@@ -12,21 +12,13 @@ const SIGNINPAGE=()=>{
         <br><br>
         <p id="createOne">Don't Have Account?<b class="Special"> Create One!</b> </p>
     `);
-    const LoginButton=document.querySelector(".LoginButton");
-    const Email=document.querySelector(".Email");
-    const Password=document.querySelector(".Password");
-    const Special=document.querySelector(".Special");
-    const ForgotPassword=document.querySelector(".ForgotPassword");
-    LoginButton.addEventListener("click",()=>{
-
-    });
-    Special.addEventListener("click",()=>{
+    CLICKED(".Special",()=>{
         ROUTE(" ",CREATEACCOUNTPAGE,"SIGNINPAGE");
     });
-    ForgotPassword.addEventListener("click",()=>{
+    CLICKED(".ForgotPassword",()=>{
         ROUTE(" ",FORGOTPASSWORDPAGE,"SIGNINPAGE");
     });
-    THEMER(Email);THEMER(Password);
+    THEMER(".Email");THEMER(".Password");
     const STYLES=`
         .appLogo{
             width: 140px;
@@ -77,3 +69,4 @@ const SIGNINPAGE=()=>{
     `;
     INJECTCSS(STYLES);
 };
+SIGNINPAGE();

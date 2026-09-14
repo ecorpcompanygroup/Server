@@ -1,5 +1,4 @@
 const HOMEPAGE=()=>{
-
     DISPLAY("",`
         <div class="HomeDesignPage">
 
@@ -18,29 +17,15 @@ const HOMEPAGE=()=>{
         </footer>
         
     `);
-
-    const UserProfile=document.querySelector("#UserProfile");
-    const CatergoryPage=document.querySelector("#CatergoryPage");
-    const SavedMovies=document.querySelector("#SavedMovies");
-
-    UserProfile.addEventListener("click",()=>{
-
+    CLICKED("#UserProfile",()=>{
         ROUTE(" ",PROFILEPAGE,"HOMEPAGE");
-
     });
-
-    CatergoryPage.addEventListener("click",()=>{
-
+    CLICKED("#CatergoryPage",()=>{
         ROUTE(" ",CATERGORYPAGE,"HOMEPAGE");
-
     });
-
-    SavedMovies.addEventListener("click",()=>{
-
+    CLICKED("#SavedMovies",()=>{
         ROUTE(" ",SAVEDMOVIESPAGE,"HOMEPAGE");
-
     });
-
     const STYLE=`
         .RoundFooter{
             background: #FFFFFF30;
@@ -65,4 +50,3 @@ const HOMEPAGE=()=>{
     `;
     INJECTCSS(STYLE);
 };
-HOMEPAGE();

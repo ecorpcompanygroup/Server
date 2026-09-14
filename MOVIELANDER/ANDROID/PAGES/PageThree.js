@@ -8,16 +8,10 @@ const FORGOTPASSWORDPAGE=()=>{
         <br><br>
         <p id="createOne">I Remember My Details?<b class="Special"> Login!</b> </p>
     `);
-    const LoginButton=document.querySelector(".LoginButton");
-    const Email=document.querySelector(".Email");
-    const Special=document.querySelector(".Special");
-    LoginButton.addEventListener("click",()=>{
-
-    });
-    Special.addEventListener("click",()=>{
+    CLICKED(".Special",()=>{
         ROUTE("",SIGNINPAGE,"FORGOTPASSWORDPAGE");
     });
-    THEMER(Email);
+    THEMER(".Email");
     const STYLES=`
         .appLogo{
             width: 140px;

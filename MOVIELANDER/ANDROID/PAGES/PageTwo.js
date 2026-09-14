@@ -12,12 +12,8 @@ const CREATEACCOUNTPAGE=()=>{
         <br><br>
         <p id="createOne">Already Have Account?<b class="Special"> Login!</b></p>
     `);
-    const Name=document.querySelector(".Name");
-    const Email=document.querySelector(".Email");
-    const Password=document.querySelector(".Password");
-    const Special=document.querySelector(".Special");
-    THEMER(Email);THEMER(Password);THEMER(Name);
-    Special.addEventListener("click",()=>{
+    THEMER(".Email");THEMER(".Password");THEMER(".Name");
+    CLICKED(".Special",()=>{
         ROUTE("",SIGNINPAGE,"CREATEACCOUNTPAGE");
     });
     const STYLES=`
