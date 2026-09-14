@@ -1,5 +1,5 @@
-const PROFILEPAGE=()=>{
-    DISPLAY("",`
+const PROFILEPAGE=(PROFILEDIV)=>{
+    DISPLAY(PROFILEDIV,`
         <header>
             <img class="LeftIcon" > 
             <h1 class="RightText">Profile</h1>

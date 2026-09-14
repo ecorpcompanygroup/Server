@@ -20,6 +20,11 @@ const HOMEPAGE=()=>{
     ICONTHEME("#Homepage",WHITEHOMEICON,BLACKHOMEICON);
     ICONTHEME("#Categoriespage",WHITEGRIDICON,BLACKGRIDICON);
     ICONTHEME("#UserProfile",WHITEUSERICON,BLACKUSERICON);
+
+    const PROFILEDIV=document.querySelector(".ProfileDiv")
+    CLICKED("#profileholder",()=>{
+        PROFILEPAGE(PROFILEDIV);
+    })
     
     const STYLE=`
         .RoundFooter{
