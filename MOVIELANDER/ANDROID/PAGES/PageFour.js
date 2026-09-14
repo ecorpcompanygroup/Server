@@ -8,24 +8,15 @@ const HOMEPAGE=()=>{
 
         <footer class="RoundFooter">
 
-            <img id="CatergoryPage" class="Icon" src="${WHITEGRIDICON}">
-
-            <img id="SavedMovies" class="Icon" src="${WHITEMOVIEICON}">
-
-            <img id="UserProfile" class="Icon" src="${WHITEPROFILEICON}">
+            <a href="#homeholder" class="Icon"><img id="CatergoryPage"  src="${WHITEGRIDICON}"></a>
+            <a href="#categoriesholder" class="Icon"><img id="SavedMovies" src="${WHITEMOVIEICON}"></a>
+            <a href="#profileholder" class="Icon"><img id="UserProfile" src="${WHITEPROFILEICON}"></a>
         
         </footer>
         
     `);
-    CLICKED("#UserProfile",()=>{
-        ROUTE(" ",PROFILEPAGE,"HOMEPAGE");
-    });
-    CLICKED("#CatergoryPage",()=>{
-        ROUTE(" ",CATERGORYPAGE,"HOMEPAGE");
-    });
-    CLICKED("#SavedMovies",()=>{
-        ROUTE(" ",SAVEDMOVIESPAGE,"HOMEPAGE");
-    });
+    
+    
     const STYLE=`
         .RoundFooter{
             background: #FFFFFF30;
