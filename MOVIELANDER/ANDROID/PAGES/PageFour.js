@@ -11,7 +11,7 @@ const HOMEPAGE=()=>{
 
             <h1>Catergory</h1>
 
-            <h1>Catergory</h1>
+            <img class="Icon" src="${MOVIELANDERNEWLOGO}">
         
         </footer>
         
