@@ -1,7 +1,7 @@
 const HOMEPAGE=()=>{
 
     DISPLAY("",`
-        <div>
+        <div class="H">
         
         </div>
 
