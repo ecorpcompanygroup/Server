@@ -1,0 +1,40 @@
+.ProfileIcon{
+    width: 50%;
+    margin-left: 1%;
+    height: 100%;
+}
+
+.ProfileImageHolder{
+    position: relative;
+    width: 45%;
+    height: 75%;
+    margin: auto;
+    background: transparent;
+    display: inline-flex;
+    margin-left: 1%;
+    margin-top: 1%;
+    border-radius: 10px;
+}
+
+.UserDataHolder{
+    position: relative;
+    width: 50%;
+    height: 75%;
+    margin: auto;
+    background: transparent;
+    display: inline-flex;
+    margin-left: 1%;
+    margin-top: 1%;
+    border-radius: 10px;
+}
+
+.AppMovieData{
+    position: absolute;
+    width: 96%;
+    height: 50px;
+    background: transparent;
+    bottom: 2%;
+    left: 1.5%;
+    border-radius: 10px;
+    display: inline-flex;
+}
