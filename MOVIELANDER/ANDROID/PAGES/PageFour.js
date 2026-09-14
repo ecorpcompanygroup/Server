@@ -11,7 +11,7 @@ const HOMEPAGE=()=>{
 
             <img class="Icon" src="${WHITEMOVIEICON}">
 
-            <img class="Icon" src="${WHITEUSERICON}">
+            <img class="Icon" src="${WHITEPROFILEICON}">
         
         </footer>
         
