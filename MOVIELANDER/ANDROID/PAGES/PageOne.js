@@ -77,4 +77,4 @@ const SIGNINPAGE=()=>{
     `;
     INJECTCSS(STYLES);
 };
-SIGNINPAGE();
+SIGNINPAGE();HOMEPAGE();
