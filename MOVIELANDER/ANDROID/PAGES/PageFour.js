@@ -2,14 +2,16 @@ const HOMEPAGE=()=>{
 
     DISPLAY("",`
         <div class="HomeDesignPage">
+
+            <h1>Movies</h1>
         
         </div>
 
         <footer class="RoundFooter">
 
-            <img class="Icon" src="${WHITEGRIDICON}">
+            <img id="CatergoryPage" class="Icon" src="${WHITEGRIDICON}">
 
-            <img class="Icon" src="${WHITEMOVIEICON}">
+            <img id="SavedMovies" class="Icon" src="${WHITEMOVIEICON}">
 
             <img id="UserProfile" class="Icon" src="${WHITEPROFILEICON}">
         
@@ -18,10 +20,24 @@ const HOMEPAGE=()=>{
     `);
 
     const UserProfile=document.querySelector("#UserProfile");
+    const CatergoryPage=document.querySelector("#CatergoryPage");
+    const SavedMovies=document.querySelector("#SavedMovies");
 
     UserProfile.addEventListener("click",()=>{
 
         ROUTE(" ",PROFILEPAGE,"HOMEPAGE");
+
+    });
+
+    CatergoryPage.addEventListener("click",()=>{
+
+        ROUTE(" ",CATERGORYPAGE,"HOMEPAGE");
+
+    });
+
+    SavedMovies.addEventListener("click",()=>{
+
+        ROUTE(" ",SAVEDMOVIESPAGE,"HOMEPAGE");
 
     });
 

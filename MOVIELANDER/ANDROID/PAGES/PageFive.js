@@ -11,6 +11,11 @@ const PROFILEPAGE=()=>{
     `);
     ICONTHEME(".LeftIcon",WHITEBACKICON,BLACKBACKICON);
 
+    const LeftIcon=document.querySelector(".LeftIcon");
+    LeftIcon.addEventListener("click",()=>{
+        ROUTE("",HOMEPAGE,"HOMEPAGE");
+    });
+
     const STYLES=`
 
         .RightText{
@@ -18,8 +23,8 @@ const PROFILEPAGE=()=>{
         }
 
         .LeftIcon{
-            width: 30px;
-            height: 30px;
+            width: 20px;
+            height: 20px;
             margin: auto;
             margin-left: 2%;
         }
