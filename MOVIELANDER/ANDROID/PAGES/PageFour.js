@@ -23,7 +23,7 @@ const HOMEPAGE=()=>{
             border:1px solid #FFFFFF30;
             width:90%;
             left: 5%;
-            bottom: 5px;
+            bottom: 20px;
             border-radius: 10px;
         }
 
