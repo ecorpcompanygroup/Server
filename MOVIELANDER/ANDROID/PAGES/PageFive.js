@@ -41,7 +41,7 @@ const PROFILEPAGE=()=>{
             bottom: 0;
             overflow: hidden;
             overflow-y: auto;
-            background: red;
+            background: transparent;
         }
     `;
     INJECTCSS(STYLES);
