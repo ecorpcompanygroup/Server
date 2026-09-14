@@ -11,11 +11,19 @@ const HOMEPAGE=()=>{
 
             <img class="Icon" src="${WHITEMOVIEICON}">
 
-            <img class="Icon" src="${WHITEPROFILEICON}">
+            <img id="UserProfile" class="Icon" src="${WHITEPROFILEICON}">
         
         </footer>
         
     `);
+
+    const UserProfile=document.querySelector("#UserProfile");
+
+    UserProfile.addEventListener("click",()=>{
+
+        ROUTE(" ",PROFILEPAGE,"HOMEPAGE");
+
+    });
 
     const STYLE=`
         .RoundFooter{

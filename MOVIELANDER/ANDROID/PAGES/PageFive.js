@@ -12,7 +12,7 @@ const PROFILEPAGE=()=>{
     ICONTHEME(".LeftIcon",WHITEBACKICON,BLACKBACKICON);
 
     const STYLES=`
-    
+
         .RightText{
             margin-right: 2%;
         }
@@ -41,5 +41,3 @@ const PROFILEPAGE=()=>{
     `;
     INJECTCSS(STYLES);
 };
-
-PROFILEPAGE()
