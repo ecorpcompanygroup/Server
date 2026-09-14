@@ -2,23 +2,30 @@ const HOMEPAGE=()=>{
     DISPLAY("",`
         <div class="HomeDesignPage">
 
-            <div class="HomeDiv" id="homeholder"></div>
-            <div class="CategoriesDiv" id="categoriesholder"></div>
-            <div class="ProfileDiv" id="profileholder"></div>
+            <h1>Movies</h1>
         
         </div>
 
         <footer class="RoundFooter">
 
-            <a href="#homeholder" class="Icon"><img id="CatergoryPage"  src="${WHITEGRIDICON}"></a>
-            <a href="#categoriesholder" class="Icon"><img id="SavedMovies" src="${WHITEMOVIEICON}"></a>
-            <a href="#profileholder" class="Icon"><img id="UserProfile" src="${WHITEPROFILEICON}"></a>
+            <img id="CatergoryPage" class="Icon" src="${WHITEGRIDICON}">
+
+            <img id="SavedMovies" class="Icon" src="${WHITEMOVIEICON}">
+
+            <img id="UserProfile" class="Icon" src="${WHITEPROFILEICON}">
         
         </footer>
         
     `);
-    
-    
+    CLICKED("#UserProfile",()=>{
+        ROUTE(" ",PROFILEPAGE,"HOMEPAGE");
+    });
+    CLICKED("#CatergoryPage",()=>{
+        ROUTE(" ",CATERGORYPAGE,"HOMEPAGE");
+    });
+    CLICKED("#SavedMovies",()=>{
+        ROUTE(" ",SAVEDMOVIESPAGE,"HOMEPAGE");
+    });
     const STYLE=`
         .RoundFooter{
             background: #FFFFFF30;
@@ -40,30 +47,6 @@ const HOMEPAGE=()=>{
             background: transparent;
         }
 
-        .HomeDiv{
-            width: 100%;
-            position: absolute;
-            height: 100%;
-            top: 0px;
-            background-color: #576490;
-            left: 0;
-        }
-        .CategoriesDiv{
-            width: 100%;
-            position: absolute;
-            height: 100%;
-            top: 0px;
-            background-color: #076c2a;
-            left: 100%;
-        }
-        .ProfileDiv{
-             width: 100%;
-            position: absolute;
-            height: 100%;
-            top: 0px;
-            background-color: #de16d4;
-            left: 200%;
-        }
     `;
     INJECTCSS(STYLE);
 };

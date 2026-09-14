@@ -21,8 +21,8 @@ const SIGNINPAGE=()=>{
     THEMER(".Email");THEMER(".Password");
     const STYLES=`
         .appLogo{
-            width: 140px;
-            height: 140px;
+            width: 130px;
+            height: 130px;
             background-color: transparent;
             margin-left: auto;
             margin-right: auto;
@@ -30,7 +30,7 @@ const SIGNINPAGE=()=>{
         }
         #movielanderLogo{
             position: relative;
-            width: 150px;
+            width: 130px;
             height: auto;
         }
         input{
@@ -40,6 +40,7 @@ const SIGNINPAGE=()=>{
             height:32px;
             border-radius:5px;
             outline: none;
+            font-size: 14px;
         }
         #designInput{
             border-left: 5px solid #23bee7;
@@ -50,6 +51,7 @@ const SIGNINPAGE=()=>{
             height:45px;
             background: #23bee7;
             color:white;
+            font-size: 14px;
         }
         .LoginButton:active{
             background: #336699;
@@ -58,12 +60,13 @@ const SIGNINPAGE=()=>{
             font-size: 17px;
             text-align:right;
             margin-right:8%;
+            font-size: 16px;
         }
         #createOne{
-            font-size: 17px;
+            font-size: 16px;
         }
         .Special{
-            font-size: 17px;
+            font-size: 16px;
             color: forestgreen;
         }
     `;
