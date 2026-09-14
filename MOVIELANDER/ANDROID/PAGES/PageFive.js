@@ -44,6 +44,15 @@ const PROFILEPAGE=()=>{
             background: transparent;
         }
 
+        .ProfileDataHolder{
+            position: relative;
+            background: forestgreen;
+            width: 95%;
+            height: 250px;
+            margin: auto;
+            border-radius: 8px;
+        }
+
         .DataDivHolder{
             position: absolute;
             width: 100%;
