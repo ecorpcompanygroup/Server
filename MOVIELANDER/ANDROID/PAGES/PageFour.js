@@ -7,11 +7,11 @@ const HOMEPAGE=()=>{
 
         <footer class="RoundFooter">
 
-            <img class="Icon" src="${MOVIELANDERNEWLOGO}">
+            <img class="Icon" src="${WHITEGRIDICON}">
 
-            <img class="Icon" src="${MOVIELANDERNEWLOGO}">
+            <img class="Icon" src="${WHITEMOVIEICON}">
 
-            <img class="Icon" src="${MOVIELANDERNEWLOGO}">
+            <img class="Icon" src="${WHITEUSERICON}">
         
         </footer>
         
@@ -19,7 +19,8 @@ const HOMEPAGE=()=>{
 
     const STYLE=`
         .RoundFooter{
-            background: red;
+            background: transparent;
+            border:1px solid #FFFFFF30;
             width:90%;
             left: 5%;
             bottom: 5px;
@@ -34,7 +35,7 @@ const HOMEPAGE=()=>{
             bottom: 0;
             overflow: hidden;
             overflow-y: auto;
-            background: blue;
+            background: transparent;
         }
 
     `;
