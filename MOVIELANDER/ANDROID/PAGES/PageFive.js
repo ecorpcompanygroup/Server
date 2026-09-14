@@ -20,20 +20,40 @@ const PROFILEPAGE=()=>{
             <br><br>
             <h1>PREFERENCES</h1>
             <br>
-            <button>Community</button>
+            <button class="ProfileButtons">
+                <img id="CommunityIcon" class="LeftIcon">
+                <h1 class="RightText">Community</h1>
+            </button>
             <br><br>
-            <button>Settings</button>
+            <button class="ProfileButtons">
+                <img id="SettingsIcon" class="LeftIcon">
+                <h1 class="RightText">Settings</h1>
+            </button>
             <br><br>
-            <button>Notifications</button>
+            <button class="ProfileButtons">
+                <img id="NotificationsIcon" class="LeftIcon">
+                <h1 class="RightText">Notifications</h1>
+            </button>
             <br><br>
-            <button>Premium</button>
+            <button class="ProfileButtons">
+                <img id="PremiumIcon" class="LeftIcon">
+                <h1 class="RightText">Premium</h1>
+            </button>
             <br><br>
-            <button>Contact Us</button>
+            <button class="ProfileButtons">
+                <img id="ContactIcon" class="LeftIcon">
+                <h1 class="RightText">Contact Us</h1>
+            </button>
             <br><br>
         </div>
         
     `);
     ICONTHEME(".LeftIcon",WHITEBACKICON,BLACKBACKICON);
+    ICONTHEME("#CommunityIcon",WHITEGROUPICON,WHITEGROUPICON);
+    ICONTHEME("#SettingsIcon",WHITESETTINGSICON,WHITESETTINGSICON);
+    ICONTHEME("#NotificationsIcon",WHITENOTIFICATIONICON,WHITENOTIFICATIONICON);
+    ICONTHEME("#PremiumIcon",WHITESUBSCRIPTIONICON,WHITESUBSCRIPTIONICON);
+    ICONTHEME("#ContactIcon",WHITEPHONEICON,WHITEPHONEICON);
 
     const LeftIcon=document.querySelector(".LeftIcon");
     LeftIcon.addEventListener("click",()=>{
@@ -119,6 +139,12 @@ const PROFILEPAGE=()=>{
             overflow: hidden;
             overflow-y: auto;
             background: transparent;
+        }
+
+        .ProfileButtons{
+            background:forestgreen;
+            display: inline-flex;
+            color:white;
         }
     `;
     INJECTCSS(STYLES);
