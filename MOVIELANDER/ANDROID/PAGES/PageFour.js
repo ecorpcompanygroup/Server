@@ -10,14 +10,16 @@ const HOMEPAGE=()=>{
 
         <footer class="RoundFooter">
 
-            <a href="#homeholder" class="Icon"><img id="CatergoryPage"  src="${WHITEGRIDICON}"></a>
-            <a href="#categoriesholder" class="Icon"><img id="SavedMovies" src="${WHITEMOVIEICON}"></a>
-            <a href="#profileholder" class="Icon"><img id="UserProfile" src="${WHITEPROFILEICON}"></a>
+            <a href="#homeholder" class="Icon"><img id="Homepage"></a>
+            <a href="#categoriesholder" class="Icon"><img id="Categoriespage"></a>
+            <a href="#profileholder" class="Icon"><img id="UserProfile"></a>
         
         </footer>
         
     `);
-    
+    ICONTHEME("#Homepage",WHITEHOMEICON,BLACKHOMEICON);
+    ICONTHEME("#Categoriespage",WHITEGRIDICON,BLACKGRIDICON);
+    ICONTHEME("#UserProfile",WHITEUSERICON,BLACKUSERICON);
     
     const STYLE=`
         .RoundFooter{
