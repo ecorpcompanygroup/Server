@@ -46,7 +46,6 @@ const PROFILEPAGE=()=>{
             </button>
             <br><br>
         </div>
-        
     `);
     CLICKED(".LeftIcon",()=>{
         ROUTE("",HOMEPAGE,"HOMEPAGE");
@@ -61,18 +60,15 @@ const PROFILEPAGE=()=>{
         .RightText{
             margin-right: 2%;
         }
-
         .LeftIcon{
             width: 20px;
             height: 20px;
             margin: auto;
             margin-left: 2%;
         }
-
         header{
             background: transparent;
         }
-
         .ProfileDataHolder{
             position: relative;
             background: transparent;
@@ -83,13 +79,11 @@ const PROFILEPAGE=()=>{
             display:inline-flex;
             border:1px solid #cdcdcd50;
         }
-
         .ProfileIcon{
             width: 50%;
             margin-left: 1%;
             height: 100%;
         }
-
         .ProfileImageHolder{
             position: relative;
             width: 45%;
@@ -101,7 +95,6 @@ const PROFILEPAGE=()=>{
             margin-top: 1%;
             border-radius: 10px;
         }
-
         .UserDataHolder{
             position: relative;
             width: 50%;
@@ -114,7 +107,6 @@ const PROFILEPAGE=()=>{
             border-radius: 10px;
             border:1px solid #cdcdcd50;
         }
-
         .AppMovieData{
             position: absolute;
             width: 96%;
@@ -125,7 +117,6 @@ const PROFILEPAGE=()=>{
             border-radius: 10px;
             display: inline-flex;
         }
-
         .DataDivHolder{
             position: absolute;
             width: 100%;
@@ -136,7 +127,6 @@ const PROFILEPAGE=()=>{
             overflow-y: auto;
             background: transparent;
         }
-
         .ProfileButtons{
             background:forestgreen;
             display: inline-flex;
