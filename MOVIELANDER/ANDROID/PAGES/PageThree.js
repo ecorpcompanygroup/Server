@@ -14,8 +14,8 @@ const FORGOTPASSWORDPAGE=()=>{
     THEMER(".Email");
     const STYLES=`
         .appLogo{
-            width: 140px;
-            height: 140px;
+            width: 130px;
+            height: 130px;
             background-color: transparent;
             margin-left: auto;
             margin-right: auto;

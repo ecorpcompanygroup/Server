@@ -24,6 +24,7 @@ const CREATEACCOUNTPAGE=()=>{
             height:32px;
             border-radius:5px;
             outline: none;
+            font-size: 16px;
         }
         #designInput{
             border-left: 5px solid #23bee7;
@@ -34,14 +35,15 @@ const CREATEACCOUNTPAGE=()=>{
             height:45px;
             background: #23bee7;
             color:white;
+            font-size: 16px;
         }
         .ForgotPassword{
-            font-size: 17px;
+            font-size: 16px;
             text-align:right;
             margin-right:10%;
         }
         .Special{
-            font-size: 17px;
+            font-size: 16px;
             color: forestgreen;
         }
     `;
