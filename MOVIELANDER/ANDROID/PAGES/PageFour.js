@@ -43,12 +43,12 @@ const HOMEPAGE=()=>{
 
     const STYLE=`
         .RoundFooter{
-            background: transparent;
+            background: #FFFFFF30;
             border:1px solid #FFFFFF30;
             width:90%;
             left: 5%;
             bottom: 20px;
-            border-radius: 10px;
+            border-radius: 50px;
         }
 
         .HomeDesignPage{
