@@ -5,7 +5,18 @@ const PROFILEPAGE=()=>{
             <h1 class="RightText">Profile</h1>
         </header>
         <div class="DataDivHolder">
-        
+            <div class="ProfileDataHolder" ></div>
+            <br>
+            <h1>PREFERENCES</h1>
+            <br>
+            <button>Settings</button>
+            <br><br>
+            <button>Notifications</button>
+            <br><br>
+            <button>Premium</button>
+            <br><br>
+            <button>Contact Us</button>
+            <br><br>
         </div>
         
     `);

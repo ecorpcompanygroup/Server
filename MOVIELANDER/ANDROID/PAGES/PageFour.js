@@ -65,4 +65,4 @@ const HOMEPAGE=()=>{
     `;
     INJECTCSS(STYLE);
 };
-HOMEPAGE();
+PROFILEPAGE();
