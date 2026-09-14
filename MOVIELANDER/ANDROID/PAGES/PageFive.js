@@ -1,7 +1,6 @@
 const PROFILEPAGE=(PROFILEDIV)=>{
     DISPLAY(PROFILEDIV,`
         <header>
-            <img class="LeftIcon" > 
             <h1 class="RightText">Profile</h1>
         </header>
         <div class="DataDivHolder">
@@ -44,13 +43,10 @@ const PROFILEPAGE=(PROFILEDIV)=>{
                 <img id="ContactIcon" class="LeftIcon">
                 <h1 class="RightText">Contact Us</h1>
             </button>
-            <br><br>
+            <br><br><br><br><br><br>
         </div>
     `);
-    CLICKED(".LeftIcon",()=>{
-        ROUTE("",HOMEPAGE,"HOMEPAGE");
-    });
-    ICONTHEME(".LeftIcon",WHITEBACKICON,BLACKBACKICON);
+   
     ICONTHEME("#CommunityIcon",WHITEGROUPICON,WHITEGROUPICON);
     ICONTHEME("#SettingsIcon",WHITESETTINGSICON,WHITESETTINGSICON);
     ICONTHEME("#NotificationsIcon",WHITENOTIFICATIONICON,WHITENOTIFICATIONICON);

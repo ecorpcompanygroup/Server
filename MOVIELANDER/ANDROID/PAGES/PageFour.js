@@ -22,14 +22,14 @@ const HOMEPAGE=()=>{
     ICONTHEME("#UserProfile",WHITEUSERICON,BLACKUSERICON);
 
     const PROFILEDIV=document.querySelector(".ProfileDiv")
-    CLICKED("#profileholder",()=>{
+    CLICKED("#UserProfile",()=>{
         PROFILEPAGE(PROFILEDIV);
     })
     
     const STYLE=`
         .RoundFooter{
-            background: #FFFFFF30;
-            border:1px solid #FFFFFF30;
+            background: #ffffff30;
+            border:1px solid #ffffff30;
             width:90%;
             left: 5%;
             bottom: 20px;
@@ -68,7 +68,7 @@ const HOMEPAGE=()=>{
             position: absolute;
             height: 100%;
             top: 0px;
-            background-color: #de16d4;
+            background-color: transparent;
             left: 200%;
         }
     `;
