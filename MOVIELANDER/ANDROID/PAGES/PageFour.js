@@ -7,9 +7,9 @@ const HOMEPAGE=()=>{
 
         <footer class="RoundFooter">
 
-            <h1>Catergory</h1>
+            <img class="Icon" src="${MOVIELANDERNEWLOGO}">
 
-            <h1>Catergory</h1>
+            <img class="Icon" src="${MOVIELANDERNEWLOGO}">
 
             <img class="Icon" src="${MOVIELANDERNEWLOGO}">
         
