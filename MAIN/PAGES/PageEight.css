@@ -3,3 +3,15 @@
     height: 30px;
     margin: auto;
 }
+
+.LeftIcon{
+    margin-left: 1%;
+    width: 30px;
+    height: 30px;
+}
+
+.RightIcon{
+    margin-right: 1%;
+    width: 30px;
+    height: 30px;
+}
