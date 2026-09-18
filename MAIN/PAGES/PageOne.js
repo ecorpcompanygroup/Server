@@ -584,3 +584,9 @@ const GETINDEX = (DATABASE, STORE, CALLBACK) => {
         finish(null);
     }
 };
+const FUNCTIONED=(ELEMENT,ASSIGNMENT,CALLBACK)=>{
+    const HOLDER=document.querySelector(ELEMENT);
+    HOLDER.addEventListener(ASSIGNMENT,()=>{
+        CALLBACK(HOLDER);
+    });
+};
