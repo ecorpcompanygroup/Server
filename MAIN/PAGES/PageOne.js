@@ -619,3 +619,21 @@ const FETCH=(LINK,DATA,CALLBACK)=>{
         .catch(Error =>{console.log(Error)})
     });
 };
+const ADD=(HOLDER,ELEMENT)=>{
+    CONDITION(HOLDER,()=>{
+        HOLDER.append(ELEMENT);
+    },()=>{
+        BODIER.append(ELEMENT);
+    });
+};
+const CAPITALIZED=(TEXTS,CALLBACK)=>{
+    const capitalized = TEXTS.toUpperCase();
+    CHECK(typeof TEXTS !== 'string',()=>{
+        console.log("Input must be a string");
+    });
+    CONDITION(typeof CALLBACK === 'function',()=>{
+        CALLBACK(capitalized);
+    },()=>{
+        console.log("Callback is not a function");
+    });
+};
