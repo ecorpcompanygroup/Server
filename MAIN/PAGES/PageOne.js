@@ -590,3 +590,32 @@ const FUNCTIONED=(ELEMENT,ASSIGNMENT,CALLBACK)=>{
         CALLBACK(HOLDER);
     });
 };
+const FINDER = (DATA, ELEMENT, ELEMENT1, TRUE_CALLBACK, FALSE_CALLBACK) => {
+    const user = DATA.find((item) => item[ELEMENT] === ELEMENT1);
+    CONDITION(user,()=>{
+        TRUE_CALLBACK(user);
+    },()=>{
+        FALSE_CALLBACK(false);
+    });
+};
+const FETCH=(LINK,DATA,CALLBACK)=>{
+    CONDITION(DATA,()=>{
+        fetch(LINK,{
+            mode:"cors",
+            method:"POST",
+            body: JSON.stringify(DATA)
+        })
+        .then(res =>res.json())
+        .then(Data =>{
+            CALLBACK(Data);
+        })
+        .catch(Error =>{console.log(Error)})
+    },()=>{
+        fetch(LINK)
+        .then(res =>res.json())
+        .then(Data =>{
+            CALLBACK(Data);
+        })
+        .catch(Error =>{console.log(Error)})
+    });
+};
