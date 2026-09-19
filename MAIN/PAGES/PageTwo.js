@@ -1,3 +1,16 @@
+const INSERTDATA=(LINK,NAME,HEADERS,INFO,CALLBACK)=>{
+    CAPITALIZED(NAME,(NAMEDATA)=>{
+        const DATA={
+            "spreadsheetUrl":LINK,
+            "sheetName":NAMEDATA,
+            "Headers":HEADERS,
+            "Data":INFO
+        };
+        FETCH(INSERTDATAAPI,DATA,(Data)=>{
+            CALLBACK(Data);
+        });
+    });
+};
 const GETDATA=(LINK,NAME,CALLBACK)=>{
     CAPITALIZED(NAME,(NAMEDATA)=>{
         const DATA={
@@ -8,6 +21,20 @@ const GETDATA=(LINK,NAME,CALLBACK)=>{
             REDUX(Data,(Element)=>{
                 CALLBACK(Element);
             });
+        });
+    });
+}; 
+const UPDATEDATA=(LINK,NAME,ID,INFO,CALLBACK)=>{
+    CAPITALIZED(NAME,(NAMEDATA)=>{
+        const DATA={
+            "action":"update",
+            "spreadsheetUrl":LINK,
+            "sheetName":NAMEDATA,
+            "ID":ID,
+            "Data":INFO
+        };
+        FETCH(UPDATEDATAAPI,DATA,(Data)=>{
+            CALLBACK(Data);
         });
     });
 }; 
