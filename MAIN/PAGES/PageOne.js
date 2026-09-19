@@ -299,11 +299,13 @@ const DEJSONIFICATION=(DATA,CALLBACK)=>{
     const MYDATATA = JSON.parse(DATA);
     CALLBACK(MYDATATA);
 };
-const SOURCEREF=(HOLDER,SOURCE)=>{
-    HOLDER.href=SOURCE||"#";
+const SOURCEREF=(NAME,SOURCE)=>{
+    const ELEMENT=document.querySelector(NAME);
+    ELEMENT.href=SOURCE||"#";
 };
-const SOURCED=(HOLDER,SOURCE)=>{
-    HOLDER.src=SOURCE||"#";
+const SOURCED=(NAME,SOURCE)=>{
+    const ELEMENT=document.querySelector(NAME);
+    ELEMENT.src=SOURCE||"#";
 };
 const SESSIONSTORE=(NAME,DATA)=>{
     sessionStorage.setItem(NAME,DATA)
@@ -590,7 +592,7 @@ const FUNCTIONED=(ELEMENT,ASSIGNMENT,CALLBACK)=>{
         CALLBACK(HOLDER);
     });
 };
-const FINDER = (DATA, ELEMENT, ELEMENT1, TRUE_CALLBACK, FALSE_CALLBACK) => {
+const FINDER = (DATA,ELEMENT,ELEMENT1,TRUE_CALLBACK, FALSE_CALLBACK) => {
     const user = DATA.find((item) => item[ELEMENT] === ELEMENT1);
     CONDITION(user,()=>{
         TRUE_CALLBACK(user);
@@ -599,27 +601,30 @@ const FINDER = (DATA, ELEMENT, ELEMENT1, TRUE_CALLBACK, FALSE_CALLBACK) => {
     });
 };
 const FETCH=(LINK,DATA,CALLBACK)=>{
-    CONDITION(DATA,()=>{
-        fetch(LINK,{
-            mode:"cors",
-            method:"POST",
-            body: JSON.stringify(DATA)
-        })
-        .then(res =>res.json())
-        .then(Data =>{
-            CALLBACK(Data);
-        })
-        .catch(Error =>{console.log(Error)})
-    },()=>{
-        fetch(LINK)
-        .then(res =>res.json())
-        .then(Data =>{
-            CALLBACK(Data);
-        })
-        .catch(Error =>{console.log(Error)})
-    });
+    if (navigation.online) {
+        CONDITION(DATA,()=>{
+            fetch(LINK,{
+                mode:"cors",
+                method:"POST",
+                body: JSON.stringify(DATA)
+            })
+            .then(res =>res.json())
+            .then(Data =>{
+                CALLBACK(Data);
+            })
+            .catch(Error =>{console.log(Error)})
+        },()=>{
+            fetch(LINK)
+            .then(res =>res.json())
+            .then(Data =>{
+                CALLBACK(Data);
+            })
+            .catch(Error =>{console.log(Error)})
+        });
+    };
 };
 const ADD=(HOLDER,ELEMENT)=>{
+    const BODIER=document.querySelector("body");
     CONDITION(HOLDER,()=>{
         HOLDER.append(ELEMENT);
     },()=>{
