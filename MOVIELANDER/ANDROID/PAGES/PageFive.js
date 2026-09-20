@@ -33,45 +33,9 @@ const PROFILEPAGE=(PROFILEDIV)=>{
 
         <div class="profile-more">
             <div class="more-items">
-                <img class="Icon" id="streak" />
-                <p id="">Streak</p>
-                <p>14</p>
-            </div>
-
-            <div class="more-items">
-                <img class="Icon" id="streak" />
-                <p id="">Streak</p>
-                <p>14</p>
-            </div>
-
-            <div class="more-items">
-                <img class="Icon" id="streak" />
-                <p id="">Streak</p>
-                <p>14</p>
-            </div>
-
-            <div class="more-items">
-                <img class="Icon" id="streak" />
-                <p id="">Streak</p>
-                <p>14</p>
-            </div>
-
-            <div class="more-items">
-                <img class="Icon" id="streak" />
-                <p id="">Streak</p>
-                <p>14</p>
-            </div>
-
-            <div class="more-items">
-                <img class="Icon" id="streak" />
-                <p id="">Streak</p>
-                <p>14</p>
-            </div>
-
-            <div class="more-items">
-                <img class="Icon" id="streak" />
-                <p id="">Streak</p>
-                <p>14</p>
+                <img class="LeftIcon" id="streak" />
+                <p class="Text-Left">Streak</p>
+                <p class="Text-Right">14</p>
             </div>
              
         </div>
@@ -137,6 +101,7 @@ const PROFILEPAGE=(PROFILEDIV)=>{
             background: purple;
             margin-top: 4%;
             margin-left: 2.5%;
+            display: block;
         }
         .more-items{
             width: 100%;
@@ -145,9 +110,11 @@ const PROFILEPAGE=(PROFILEDIV)=>{
             border-radius: 5px;
             margin-bottom: 4%;
             display: inline-flex;
+            text-algn: left;
         }
-        #streak{
-            margin-left: 5%;
+        .Text-Left{
+            text-align: left;
+            margin-left: 10%;
         }
     `;
     INJECTCSS(STYLES);
