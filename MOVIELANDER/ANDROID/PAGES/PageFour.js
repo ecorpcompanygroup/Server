@@ -64,14 +64,14 @@ const HOMEPAGE=()=>{
             left: 100%;
         }
         .ProfileDiv{
-             width: 100%;
+            width: 100%;
             position: absolute;
             height: 100%;
             top: 0px;
             background-color: transparent;
             left: 200%;
+            overflow-y: auto;
         }
     `;
     INJECTCSS(STYLE);
 };
-HOMEPAGE();

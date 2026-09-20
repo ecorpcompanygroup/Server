@@ -11,20 +11,80 @@ const PROFILEPAGE=(PROFILEDIV)=>{
                 <p class="Bar-info">Following: 22</p>
             </div>
 
+            <button class="edit-profile-btn">
+                Edit
+            </button>
+
             <div class="watching-details">
-                <p>hiii</p>
+                <div class="watched-display" id="watched-movies">
+                    <p>Watched</p>
+                    <p>33</p>
+                </div>
+                <div class="watched-display" id="watched-hours">
+                    <p>Hours</p>
+                    <p>512</p>
+                </div>
+                <div class="watched-display" id="premium-days">
+                    <P>Premium</P>
+                    <p>12</p>
+                </div>
+            </div>
+        </header>
+
+        <div class="profile-more">
+            <div class="more-items">
+                <img class="Icon" id="streak" />
+                <p id="">Streak</p>
+                <p>14</p>
             </div>
 
-        </header>
+            <div class="more-items">
+                <img class="Icon" id="streak" />
+                <p id="">Streak</p>
+                <p>14</p>
+            </div>
+
+            <div class="more-items">
+                <img class="Icon" id="streak" />
+                <p id="">Streak</p>
+                <p>14</p>
+            </div>
+
+            <div class="more-items">
+                <img class="Icon" id="streak" />
+                <p id="">Streak</p>
+                <p>14</p>
+            </div>
+
+            <div class="more-items">
+                <img class="Icon" id="streak" />
+                <p id="">Streak</p>
+                <p>14</p>
+            </div>
+
+            <div class="more-items">
+                <img class="Icon" id="streak" />
+                <p id="">Streak</p>
+                <p>14</p>
+            </div>
+
+            <div class="more-items">
+                <img class="Icon" id="streak" />
+                <p id="">Streak</p>
+                <p>14</p>
+            </div>
+             
+        </div>
     `);
-   
+
+   ICONTHEME("#streak",WHITESHOPPINGCART,BLACKSHOPPINCARTICON);  
    
     const STYLES=`
         .profileBar{
             background: #0762b2;
             top: 0;
             width: 100%;
-            height: 30%;
+            height: 27%;
             position: relative;
         }
         .profile-image{
@@ -38,11 +98,11 @@ const PROFILEPAGE=(PROFILEDIV)=>{
         }
         .profileBar-info{
             background: transparent;
-            width: 200px;
+            width: auto;
             position: absolute;
             height: auto;
-            right: 1%;
-            top: 13%;
+            left: 40%;
+            top: 15%;
         }
         .Bar-info{
             text-align: left;
@@ -51,12 +111,45 @@ const PROFILEPAGE=(PROFILEDIV)=>{
         }
         .watching-details{
             position: absolute;
-            background-color: red;
-            width: 90%;
-            left: 5%;
+            background-color: transparent;
+            width: 95%;
+            left: 2.5%;
             height: 50px;
-            bottom: 3%;
+            bottom: 0;
+            display: inline-flex;
+            border-bottom: 1.5px solid white;
+        }
+        .watched-display{
+            margin: auto;
+        }
+        .edit-profile-btn{
+            position: absolute;
+            width: 15%;
+            height: 25px;
+            font-size: 15px;
+            border-radius: 7px;
+            top: 17%;
+            right: 5%;
+        }
+        .profile-more{
+            width: 95%;
+            height: auto;
+            background: purple;
+            margin-top: 4%;
+            margin-left: 2.5%;
+        }
+        .more-items{
+            width: 100%;
+            background: pink;
+            height: 50px;
+            border-radius: 5px;
+            margin-bottom: 4%;
+            display: inline-flex;
+        }
+        #streak{
+            margin-left: 5%;
         }
     `;
     INJECTCSS(STYLES);
 };
+PROFILEPAGE()
