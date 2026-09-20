@@ -118,5 +118,5 @@ const PROFILEPAGE=(PROFILEDIV)=>{
         }
     `;
     INJECTCSS(STYLES);
-};
+};               
 PROFILEPAGE()
