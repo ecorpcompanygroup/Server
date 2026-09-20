@@ -5,7 +5,7 @@ const CLOUDUPDATE=(ELEMENT)=>{
         "action":"update",
         "spreadsheetUrl":"https://docs.google.com/spreadsheets/d/16LFihiUWEqvV5Np064F1MVQiNf9f4d12FPbiRUT73-4/edit?usp=sharing",
         "sheetName":"DESKTOP",
-        "ID":"kDY6B7G8C3I8VO6MSJ05EICDLZMS7G3JG",
+        "ID":"kG0HNY9GF4MQQEEG308EC8ENRW3AOVG88",
         "Data":INFO
     };
     fetch(UPDATEDATAAPI,{
@@ -30,7 +30,7 @@ fetch("./CONNECTION/Pages.json")
     return res.json();
   })
   .then(Data => {
-    if (Data.ID !== "kDY6B7G8C3I8VO6MSJ05EICDLZMS7G3JG") {
+    if (Data.ID !== "kG0HNY9GF4MQQEEG308EC8ENRW3AOVG88") {
       console.log("Invalid ID");
       return;
     }
