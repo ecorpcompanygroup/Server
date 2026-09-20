@@ -113,8 +113,7 @@ const PROFILEPAGE=(PROFILEDIV)=>{
             text-algn: left;
         }
         .Text-Left{
-            text-align: left;
-            margin-left: 10%;
+            margin-right: 50%;
         }
     `;
     INJECTCSS(STYLES);
