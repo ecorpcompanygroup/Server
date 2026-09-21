@@ -139,17 +139,16 @@ const PROFILEPAGE=(PROFILEDIV)=>{
             height: 50px;
             border-radius: 5px;
             margin-bottom: 4%;
-            display: flex;
-            text-algn: left;
+            display: inline-flex;
         }
         #streak{
-            margin-left: 7%;
+            margin-left: 0;
         }
         .more-text{
-            margin-left: -13%;
+            margin-left: -0;
         }
         .more-text-1{
-            text-align: left !important;
+            text-align: left;
            
         }
     `;
