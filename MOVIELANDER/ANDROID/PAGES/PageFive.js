@@ -34,8 +34,38 @@ const PROFILEPAGE=(PROFILEDIV)=>{
         <div class="profile-more">
             <div class="more-items">
                 <img class="LeftIcon" id="streak" />
-                <p class="Text-Left">Streak</p>
-                <p class="Text-Right">14</p>
+                <p class="more-text">Streak</p>
+                <p class="">14</p>
+            </div>
+
+            <div class="more-items">
+                <img class="LeftIcon" id="achievements" />
+                <p class="more-text-1">Achievements</p>
+            </div>
+
+            <div class="more-items">
+                <img class="LeftIcon" id="achievements" />
+                <p class="more-text-1">Esther</p>
+            </div>
+
+            <div class="more-items">
+                <img class="LeftIcon" id="achievements" />
+                <p class="more-text-1">Erou</p>
+            </div>
+
+            <div class="more-items">
+                <img class="LeftIcon" id="achievements" />
+                <p class="more-text-1">Achievements</p>
+            </div>
+
+            <div class="more-items">
+                <img class="LeftIcon" id="achievements" />
+                <p class="more-text-1">Achievements</p>
+            </div>
+
+            <div class="more-items">
+                <img class="LeftIcon" id="achievements" />
+                <p class="more-text-1">Logout</p>
             </div>
              
         </div>
@@ -110,11 +140,16 @@ const PROFILEPAGE=(PROFILEDIV)=>{
             border-radius: 5px;
             margin-bottom: 4%;
             display: inline-flex;
-            text-algn: left;
         }
-        .Text-Left{
+        #streak{
+            margin-left: 0;
+        }
+        .more-text{
+            margin-left: -0;
+        }
+        .more-text-1{
             text-align: left;
-            margin-left: 10%;
+           
         }
     `;
     INJECTCSS(STYLES);
