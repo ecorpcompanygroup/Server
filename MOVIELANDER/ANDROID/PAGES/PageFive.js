@@ -33,7 +33,7 @@ const PROFILEPAGE=(PROFILEDIV)=>{
 
         <div class="profile-more">
             <div class="more-items">
-                <img class="LeftIcon" id="streak" />
+                <img class="Icon" id="streak" />
                 <p class="more-text">Streak</p>
                 <p class="">14</p>
             </div>
@@ -43,30 +43,7 @@ const PROFILEPAGE=(PROFILEDIV)=>{
                 <p class="more-text-1">Achievements</p>
             </div>
 
-            <div class="more-items">
-                <img class="LeftIcon" id="achievements" />
-                <p class="more-text-1">Esther</p>
-            </div>
-
-            <div class="more-items">
-                <img class="LeftIcon" id="achievements" />
-                <p class="more-text-1">Erou</p>
-            </div>
-
-            <div class="more-items">
-                <img class="LeftIcon" id="achievements" />
-                <p class="more-text-1">Achievements</p>
-            </div>
-
-            <div class="more-items">
-                <img class="LeftIcon" id="achievements" />
-                <p class="more-text-1">Achievements</p>
-            </div>
-
-            <div class="more-items">
-                <img class="LeftIcon" id="achievements" />
-                <p class="more-text-1">Logout</p>
-            </div>
+            
              
         </div>
     `);
@@ -133,6 +110,8 @@ const PROFILEPAGE=(PROFILEDIV)=>{
             margin-left: 2.5%;
             display: block;
         }
+        
+
         .more-items{
             width: 100%;
             background: pink;
